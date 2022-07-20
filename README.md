@@ -1,4 +1,19 @@
-Disclaimer: This guide is written for mantik v0.1.0
+# Mantik tutorials
+
+This is a collection of tutorials and demos for usage of the mantik platform.
+
+You can install all dependecies with either `poetry` or `pip`:
+
+```bash
+poetry install
+```
+
+or
+
+```bash
+pip install .
+```
+
 
 # Quickstart
 
