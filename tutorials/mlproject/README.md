@@ -27,8 +27,6 @@ entry_points:
     command: "python main.py --alpha {alpha}"
 ```
 
-# TODO explain parameters and where the docker file comes from
-
 ## Containers
 
  - Dockerfile
