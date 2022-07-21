@@ -21,34 +21,23 @@ NOTE: In this demo it is assumed that the singularity image for execution is alr
 present as `demo/mlproject/wine-quality-executor.sif`. If you don't have singularity
 installed, ask an admin to provide you with the image.
 
-## Run from docker
-
-For convenience, a Dockerfile is provided that installs all mantik dependencies.
-It must be built from the parent directory for proper build context:
-
-```commandline
-cd ..
-sudo docker build -t wine-quality-executor -f demo/mlproject/Dockerfile .
-```
-
-Then run the image interactively with `demo` directory mounted:
-```commandline
-sudo docker run -it -v ${PWD}:/demo -network="host" wine-quality-executor
-```
-
-Note: The `-network="host"` flag ensures that localhost is reachable. It is only needed
-if the compute backend service is run locally.
-
 ## Build the required Singularity image
 
+For this demo project we provide a singularity / apptainer recipe (`mlprojcet/recipe.def`).
+
+Build the image as follows:
+
 ```commandline
-singularity build demo/mlproject/wine-quality-executor.sif docker-daemon://wine-quality-executor:latest
+singularity build mlproject/wine-quality-executor.sif mlproject/recipe.def
 ```
-**Note:** Building with Singularity might require sudo.
+
+**Note:** 
+ - Building with Singularity might require sudo.
+ - If you have apptainer installed, you can just replace `singularity` with `apptainer`.
 
 ## Setup the environment
 
-Whether you run from docker or locally, you will need to set environment variables:
+You will need to set environment variables:
 
 The credentials for authentication as well as the accounting project are read
 from the environment variables `MANTIK_UNICORE_USER`, `MANTIK_UNICORE_PASSWORD`,
@@ -60,6 +49,7 @@ export MANTIK_UNICORE_PASSWORD=<pasword>
 export MANTIK_UNICORE_PROJECT=<project name>
 ```
 
+#TODO Prüfen, ob das hierunter weg kann
 The backend reads the MLflow-specific environment variables (`MLFLOW_`) from
 the environment and sets them in the execution environment of the job
 (i.e. submits them to the UNICORE API).
@@ -70,32 +60,11 @@ export MLFLOW_TRACKING_URI=<uri>
 export MLFLOW_EXPERIMENT_ID=<experiment-id>
 ```
 
-For access to mantik, you will need to supply Cognito access via:
+For access to the mantik platform, you will need to supply Cognito access via: #TODO Nicht Cognito access schreiben!
 ```commandline
 export MANTIK_USERNAME=<user>
 export MANTIK_PASSWORD=<password>
 ```
-
-## Running the compute backend service locally
-
-Build the docker container:
-```commandline
-cd ..
-sudo docker build -t compute_backend -f docker/compute_backend_service.Dockerfile
-```
-
-Run it with exposed port:
-
-```commandline
-docker run --rm -p 8080:8080 compute_backend
-```
-
-Test the connection:
-
-```commandline
-curl http://127.0.0.1:8080/compute-backend/docs
-```
-
 
 ### The backend config
 
@@ -140,8 +109,6 @@ the file upload.
  - In this demo project, a singularity image for the execution of MLProject code is
 provided in `demo/mlproject/wine-quality-executor.sif` and referenced in
 `demo/mlproject/unicore-config.json`.
- - Building singularity images is not possible inside the Docker image's
-shell, so the image for execution must be present.
  - Execution is asynchronous, i.e. the local process terminates as soon as all data are
 transferred and the Job is submitted. However, data transfer might take a while since
 singularity images used here are large.

@@ -1,0 +1,11 @@
+Bootstrap: docker
+From: mquade/poetry:3.7-1.1.11
+
+%files
+  ../../../pyproject.toml /opt/
+  ../../../poetry.lock /opt/
+
+%post
+  cd /opt
+  poetry install
+  
