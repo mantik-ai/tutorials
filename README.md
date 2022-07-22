@@ -64,7 +64,7 @@ We use [UNICORE](https://www.unicore.eu/) to schedule jobs on HPC systems.
 You will need credentials for UNICORE (when running on JUWELS these are judoor username and password) and access to a compute project.
 
 For an example project that can be run on JUWELS with mantik, check out the demo directory.
-For more information on how to setup such a project, see [the user guide](tutorials/user-guide) and the tutorials.
+For more information on how to setup such a project, see [the user guide](tutorials/user_guide) and the tutorials.
 
 Set the required environment variables:
 
