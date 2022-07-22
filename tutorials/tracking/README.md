@@ -1,6 +1,6 @@
 # Using the mlflow tracking API
 
-This tutorial helps you to get started with the mlflow tracking UI. For detailed information, please refer to the [mlflow documentation](https://www.mlflow.org/docs/latest/tracking.html#logging-data-to-runs).
+This tutorial helps you to get started with the mlflow tracking API. For detailed information, please refer to the [mlflow documentation](https://www.mlflow.org/docs/latest/tracking.html#logging-data-to-runs).
 
 ## Remote tracking
 
@@ -9,7 +9,7 @@ By default, mlflow tracks experiments to your local filesystem. In order to use 
 For the mantik platform, you can use the domain name, e.g. `https://test.cloud.mantik.ai`. It is important to add the `https://` part. When `mantik.init_tracking()` is used,
 the API path is added to the base URL.
 
-# TODO Why is this not necessary for compute backend service
+When using the compute backend service, the tracking URI as well as API tokens are provided to the job automatically, i.e. you do not need to call `mantik.init_tracking()` inside your mlproject code. You can rely on the standard mlflow tracking methods.
 
 
 ## Experiment specification
@@ -24,11 +24,17 @@ Mlflow offers a multitude of tracking functions, all of which are integrated wit
 
 ### Autologging
 
-Mlflow supports a multitude of python ML frameworks out of the box. Autologging enables automatic logging of model configurations from these frameworks, see [autolog documentation](https://www.mlflow.org/docs/latest/python_api/mlflow.html).
+Mlflow supports many python ML frameworks out of the box. Autologging enables automatic logging of model configurations from these frameworks, see [autolog documentation](https://www.mlflow.org/docs/latest/python_api/mlflow.html). You can enable it with:
+
+```
+import mlflow
+
+mlflow.autolog()
+```
 
 ### Parameters
 
-Parameters can be logged explicitly with the [`log_param` method](https://www.mlflow.org/docs/latest/python_api/mlflow.html#mlflow.log_param). This is especially usefull if you have custom code and parameters that are not tracked with autologging.
+Parameters can be logged explicitly with the [`log_param` method](https://www.mlflow.org/docs/latest/python_api/mlflow.html#mlflow.log_param). This is especially useful if you have custom code and parameters that are not tracked with autologging.
 
 ### Metrics
 
