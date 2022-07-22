@@ -221,7 +221,7 @@ export MANTIK_UNICORE_PROJECT=<project name>
 
 # Demo project
 
-A fully functional demonstration is available [here](demos/wine-quality-estimator).
+A fully functional demonstration is available [here](../demos/wine-quality-estimator).
 
 # Security
 
