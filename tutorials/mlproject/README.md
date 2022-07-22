@@ -1,6 +1,6 @@
 # The mlproject format
 
-This tutorial will guide you throug the creation of an `mlproject` as it is used with `mlflow`. For more information, see [mlflow documentation](https://www.mlflow.org/docs/latest/projects.html).
+This tutorial will guide you throug the creation of an `mlproject` as it is used with `mlflow`. For more information, see the [mlflow documentation](https://www.mlflow.org/docs/latest/projects.html).
 
 ## MLProject specification
 
@@ -27,10 +27,14 @@ entry_points:
     command: "python main.py --alpha {alpha}"
 ```
 
+**Notes:**
+
+ - We strongly suggest you use the `docker environment`. For alternatives, [see here](https://www.mlflow.org/docs/latest/projects.html#specifying-an-environment).
+ - The `parameters` mapping in `MLProject` is not strictly needed. We include it here for the sake of completness, see also the  [runscript section](#runscript).
+
 ## Containers
 
- - Dockerfile
- - Singularity image
+You must provide the singularity / apptainer image in which your project can be executed under the name that is specified in the [backend config](#backend-config). For information on how to find or build the proper image, [see the containers tutorial](../containers/README.md).
 
 ## Runscript
 
@@ -58,7 +62,7 @@ if __name__ == "__main__":
 
 ## backend-config
 
-The backend config the only extension to the standard `mlproject` as proposed by mlflow. Here, all configuration options for UNICORE and the scheduler on the compute backend (usually SLURM) are collected.
+The backend config is the only extension to the standard `mlproject` as proposed by mlflow. Here, all configuration options for UNICORE and the scheduler on the compute backend (usually SLURM) are collected.
 
 The config is written in JSON format. There are few mandatory entries, as we rely on the default values set by UNICORE.
 
@@ -82,13 +86,13 @@ The config is written in JSON format. There are few mandatory entries, as we rel
 
 The most common entries are:
 
- - `SingularityImage`: Defines which singularity image is used to run the project in. The path is relative to `mlproject` directory.
- - `UnicoreApuUrl`: Specifies how UNICORE can be reached. For JUWELS you can leave this entry as it is.
+ - `SingularityImage`: *mandatory* Defines which singularity image is used to run the project in. The path is relative to `mlproject` directory.
+ - `UnicoreApuUrl`: *mandatory* Specifies how UNICORE can be reached. For JUWELS you can leave this entry as it is.
  - `Environment`: Pass environment variables as key, value pairs that are available at runtime.
  - `Resources`: Specify resources. This is specific to the SLURM scheduler.
   - `Runtime`: Maximum runtime of the job.
-  - `Queue`: Queue toschedule the job to.
-  - `Nodes`: Number of nodes to use for job execution.
+  - `Queue`: *mandatory* Queue to schedule the job to.
+  - `Nodes`: *mandatory* Number of nodes to use for job execution.
   - `CPUs`: Number of CPUs to use.
   - `CPUsPerNode`: Number of CPUs per node.
   - `Memory`: Memory to allocate for the job.
