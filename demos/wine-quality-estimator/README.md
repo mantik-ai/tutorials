@@ -94,6 +94,15 @@ that are allocated for the job.
 For more details about each option see
 [the UNICORE job description](https://sourceforge.net/p/unicore/wiki/Job_Description/).
 
+### Dependency management
+
+This project needs the python packages `mantik` and `scikit-learn`. Both are 
+installed in the `Dockerfile` and `recipe.def`. Versions are pinned.
+
+In the case of more dependencies we recommend creating a `requirements.txt`
+file or the usage of [`poetry`](https://python-poetry.org/) for dependency 
+management.
+
 
 ### Data
 
