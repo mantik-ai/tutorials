@@ -1,7 +1,7 @@
 # Mantik Demo
 
-This demo enables you to execute training of a linear model to predict wine quality
-from wine-related input features such as acidity. It follows
+This demo enables you to execute training of a linear model to predict wine
+quality from wine-related input features such as acidity. It follows
 [this example provided by mlflow](https://github.com/mlflow/mlflow/tree/master/examples/docker)
 and is adjusted to work on the Mantik platform.
 
@@ -17,15 +17,18 @@ You will need:
  - JUDOOR account and access to a compute project on JUWELS
  - Mantik AWS Cognito User (ask an admin to provide you with one)
 
-**Note:** In this demo it is assumed that the singularity image for execution is already
-present as `mlproject/wine-quality-executor.sif`. If you don't have singularity
-installed, ask an admin to provide you with the image.
+**Note:** In this demo it is assumed that the singularity image for execution
+is already present as `mlproject/wine-quality-executor.sif`. If you don't have
+singularity installed, ask an admin to provide you with the image.
 
-**Note 2:** In this demo we use singularity images since it was tested with `singularity-ce version 3.8.0`. However, it should also work for newer versions and `apptainer` images. 
+**Note 2:** In this demo we use singularity images since it was tested with
+`singularity-ce version 3.8.0`. However, it should also work for newer versions
+and `apptainer` images. 
 
 ## Build the required Singularity image
 
-For this demo project we provide a Singularity (Apptainer) definition file (`mlprojcet/recipe.def`).
+For this demo project we provide a Singularity (Apptainer) definition file
+(`mlprojcet/recipe.def`).
 
 Build the image as follows:
 
@@ -35,16 +38,17 @@ singularity build mlproject/wine-quality-executor.sif mlproject/recipe.def
 
 **Note:** 
  - Building with Singularity might require sudo.
- - If you have apptainer installed, you can just replace `singularity` with `apptainer`.
+ - If you have apptainer installed, you can just replace `singularity` with
+`apptainer`.
 
 ## Setup the environment
 
 You will need to set environment variables:
 
 The credentials for authentication as well as the accounting project are read
-from the environment variables `MANTIK_UNICORE_USER`, `MANTIK_UNICORE_PASSWORD`,
-and `MANTIK_UNICORE_PROJECT`, respectively. These need to be
-set in the execution environment:
+from the environment variables `MANTIK_UNICORE_USER`,
+`MANTIK_UNICORE_PASSWORD`, and `MANTIK_UNICORE_PROJECT`, respectively.
+These need to be set in the execution environment:
 
 ```commandline
 export MANTIK_UNICORE_USERNAME=<user>
@@ -58,7 +62,8 @@ Additionally, the information on where to send mlflow logs to is required:
 export MLFLOW_TRACKING_URI=<uri>
 ```
 
-You can just use the URL of mantik platform landing page - the mantik client will take care of rerouting to the API.
+You can just use the URL of mantik platform landing page - the mantik client
+will take care of rerouting to the API.
 
 For access to the mantik platform, you will need to supply credentials via:
 
@@ -69,8 +74,9 @@ export MANTIK_PASSWORD=<password>
 
 ### The backend config
 
-The backend config is in JSON format and may contain information for the resources
-that are allocated for the job.
+The backend config is in JSON format and may contain information for the
+resources that are allocated for the job.
+
 ```JSON
 {
   "SingularityImage": "<absolute path to Singularity image>",
@@ -91,34 +97,35 @@ that are allocated for the job.
   }
 }
 ```
+
 For more details about each option see
 [the UNICORE job description](https://sourceforge.net/p/unicore/wiki/Job_Description/).
 
 ### Dependency management
 
-This project needs the python packages `mantik` and `scikit-learn`. Both are 
+This project needs the python packages `mantik` and `scikit-learn`. Both are
 installed in the `Dockerfile` and `recipe.def`. Versions are pinned.
 
 In the case of more dependencies we recommend creating a `requirements.txt`
-file or the usage of [`poetry`](https://python-poetry.org/) for dependency 
+file or the usage of [`poetry`](https://python-poetry.org/) for dependency
 management.
 
 
 ### Data
 
-In accordance to mlflow docker backend, where the mlproject directory is mounted, all
-files in this directory are transferred alongside the singularity image and accessible
-at runtime.
+In accordance to mlflow docker backend, where the mlproject directory is
+mounted, all files in this directory are transferred alongside the singularity
+image and accessible at runtime.
 
-Make sure not to have unnecessary files in that directory in order not to slow down
-the file upload.
+Make sure not to have unnecessary files in that directory in order not to slow
+down the file upload.
 
 
 ### Results
 
-Execution is asynchronous, i.e. the local process terminates as soon as all data are
-transferred and the Job is submitted. However, data transfer might take a while since
-singularity images used here are large.
+Execution is asynchronous, i.e. the local process terminates as soon as all
+data are transferred and the Job is submitted. However, data transfer might
+take a while since singularity images used here are large.
 
-Results can then be expected in the mlflow UI hosted on the mantik platform. Currently, the mlflow UI 
-is the landing page of the platform.
+Results can then be expected in the mlflow UI hosted on the mantik platform.
+Currently, the mlflow UI is the landing page of the platform.
