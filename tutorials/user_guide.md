@@ -139,6 +139,7 @@ For more information on apptainer images, [see the documentation](https://apptai
 
 The backend configuration is in JSON format and may contain information for the resources
 that are allocated for the job.
+
 ```JSON
 {
   "SingularityImage": "<absolute path to Singularity image>",
@@ -159,8 +160,30 @@ that are allocated for the job.
   }
 }
 ```
+
+The most common entries are:
+
+ - `SingularityImage` (required): Defines which singularity image is used to run the project in. The path is relative to `mlproject` directory.
+ - `UnicoreApuUrl` (required): Specifies how UNICORE can be reached. For JUWELS you can leave this entry as it is.
+- `Resources` (required): Specify resources (see [here](https://sourceforge.net/p/unicore/wiki/Job_Description/)). This is specific to the SLURM scheduler.
+  - `Queue` (required): Queue to schedule the job to.
+  - `Runtime` (optional): Maximum runtime of the job.
+  - `Nodes` (optional): Number of nodes to use for job execution.
+  - `CPUs` (optional): Number of CPUs to use.
+  - `CPUsPerNode` (optional): Number of CPUs per node.
+  - `Memory` (optional): Memory to allocate for the job.
+  - `Reservation` (optional): Batch system reservation ID
+  - `NodeConstraints` (optional): Batch system node constraints
+  - `QoS` (optional): Batch system QoS
+- `Environment` (optional): Pass environment variables as key, value pairs that are available at runtime.
+
+
 For more details about each option see
 [the UNICORE job description](https://sourceforge.net/p/unicore/wiki/Job_Description/).
+
+Information on the `UnicoreApiUrl` for Juelich Computing Center, e.g. for 
+access to JUWELS, can be found [here](https://www.fz-juelich.de/en/ias/jsc/services/user-support/jsc-software-tools/unicore)
+and [here](https://fzj-unic.fz-juelich.de:9112/FZJ/rest/registries/default_registry).
 
 
 # Required credentials and environment variables
