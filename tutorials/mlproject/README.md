@@ -39,7 +39,7 @@ You must provide the Singularity/Apptainer image in which your project can be ex
 ## Runscript
 
 In our example, the main runscript is `main.py` as defined in the [MLproject entry point](#mlproject-specification).
-In the file the training is configured. Make sure to use mlflow in it for tracking.
+In the file in which the training is configured, make sure to use mlflow for tracking.
 
 The example below reads the parameter `alpha` from the commandline in order to access parameters as defined in `MLproject`. `mlflow` is used to log the parameter to the tracking server.
 
