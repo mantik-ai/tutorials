@@ -39,7 +39,7 @@ You must provide the Singularity/Apptainer image in which your project can be ex
 ## Runscript
 
 In our example, the main runscript is `main.py` as defined in the [MLproject entry point](#mlproject-specification).
-In the file the training is configured. Make sure to use mlflow in it for tracking.
+In the file in which the training is configured, make sure to use mlflow for tracking.
 
 The example below reads the parameter `alpha` from the commandline in order to access parameters as defined in `MLproject`. `mlflow` is used to log the parameter to the tracking server.
 
@@ -86,13 +86,16 @@ The config is written in JSON format. There are few mandatory entries, as we rel
 
 The most common entries are:
 
- - `SingularityImage`: *mandatory* Defines which singularity image is used to run the project in. The path is relative to `mlproject` directory.
- - `UnicoreApuUrl`: *mandatory* Specifies how UNICORE can be reached. For JUWELS you can leave this entry as it is.
- - `Environment`: Pass environment variables as key, value pairs that are available at runtime.
- - `Resources`: Specify resources. This is specific to the SLURM scheduler.
-  - `Runtime`: Maximum runtime of the job.
-  - `Queue`: *mandatory* Queue to schedule the job to.
-  - `Nodes`: *mandatory* Number of nodes to use for job execution.
-  - `CPUs`: Number of CPUs to use.
-  - `CPUsPerNode`: Number of CPUs per node.
-  - `Memory`: Memory to allocate for the job.
+ - `SingularityImage` (required): Defines which singularity image is used to run the project in. The path is relative to `mlproject` directory.
+ - `UnicoreApuUrl` (required): Specifies how UNICORE can be reached. For JUWELS you can leave this entry as it is.
+- `Resources` (required): Specify resources (see [here](https://sourceforge.net/p/unicore/wiki/Job_Description/)). This is specific to the SLURM scheduler.
+  - `Queue` (required): Queue to schedule the job to.
+  - `Runtime` (optional): Maximum runtime of the job.
+  - `Nodes` (optional): Number of nodes to use for job execution.
+  - `CPUs` (optional): Number of CPUs to use.
+  - `CPUsPerNode` (optional): Number of CPUs per node.
+  - `Memory` (optional): Memory to allocate for the job.
+  - `Reservation` (optional): Batch system reservation ID
+  - `NodeConstraints` (optional): Batch system node constraints
+  - `QoS` (optional): Batch system QoS
+- `Environment` (optional): Pass environment variables as key, value pairs that are available at runtime.
