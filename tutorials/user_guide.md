@@ -69,10 +69,10 @@ import mantik
 client = mantik.ComputeBackendClient.from_env()
 ```
 
-Note that in order for the tracking to work properly, the compute resources must be able to access the tracking URI. For JUWELS we have a whitelisted IP adress that points to the mantik platform so that compute nodes can reach the platform. 
+**Note:** In order for the tracking to work properly, the compute resources must be able to access the tracking URI. In collaboration with JSC, their compute facilities (JUWELS, JURECA, JUSUF) allow access to the mantik platform from compute nodes.
 
-The compute backend expects a certain directory format of the Machine Learning project you want to use. We basically follow [mlfllow conventions for mlprojects](https://www.mlflow.org/docs/latest/projects.html),
-all further conventions are described in the [mlproject section](#mlproject-setup).
+The compute backend expects a certain directory format of the machine learning project you want to use. We basically follow [mlflow conventions for MLprojects](https://www.mlflow.org/docs/latest/projects.html),
+all further conventions are described in the [MLproject section](#mlproject-setup).
 
 ## Client usage
 
@@ -94,10 +94,10 @@ response = client.submit_run(
 
 The arguments to the `submit_run` method are specified as follows:
  - `experiment_id`: Experiment ID under which to store the run and access it in the UI.
- - `mlproject path`: Path to mlproject. For more information [see mlprojects section](#mlproject-setup).
+ - `mlproject path`: Path to MLproject. For more information [see MLprojects section](#mlproject-setup).
  - `mlflow_parameters`: Mapping of parameters and values handed over to mlproject. For more information [see here](https://www.mlflow.org/docs/latest/projects.html#specifying-parameters).
  - `backend_config_path`: Path to the backend configuration file, relative to `mlproject_path`. For more information on the backend configuration see [backend configuration section](#backend-configuration). 
- - `entry_point`: Entry point to run for the given mlproject. For more information [see here](https://www.mlflow.org/docs/latest/projects.html#running-projects).
+ - `entry_point`: Entry point to run for the given MLproject. For more information [see here](https://www.mlflow.org/docs/latest/projects.html#running-projects).
 
 The response contains experiment and run id, so that you can find your runs easily in the UI. 
 
@@ -107,7 +107,9 @@ The `mantik.ComputeBackendClient` expects a certain structure of you machine lea
 
  - We only support containerized projects.
  - An additional file for the compute backend configuration is needed.
- - An apptainer (singularity) image must be present in the `mlproject` directory.
+ - An Apptainer (Singularity) image must be present in the MLproject directory.
+ 
+ _Note:_ Singularity CE (community edition) has been renamed to Apptainer.
 
 ### Running in containers
 
