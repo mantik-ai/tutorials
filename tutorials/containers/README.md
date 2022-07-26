@@ -67,7 +67,7 @@ Here, only the two most frequently used sections are described briefly. For deta
 
 The `files` section is used to copy files into the image. Paths are relative to the path from which `apptainer build` is executed. 
 
-**Tip:** Do not copy to user paths. When running the image, the user directories are automatically mounted. It can lead to confusion between mounted and copied files. Good places to copy your files to are `/opt` or `/project`.
+**Tip:** Do not copy to user paths. When running the image, the user directories are automatically mounted. It can lead to confusion between mounted and copied files. Good places to copy your files to are `/opt`, `/app` or `/project`.
 
 
 #### `%post`
