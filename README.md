@@ -61,7 +61,7 @@ mlflow.autolog()
 
 We use [UNICORE](https://www.unicore.eu/) to schedule jobs on HPC systems.
 
-You will need credentials for UNICORE (when running on JUWELS these are judoor username and password) and access to a compute project.
+You will need credentials for UNICORE (when running on JUWELS these are JuDoor username and password) and access to a compute project.
 
 For an example project that can be run on JUWELS with mantik, check out the demo directory.
 For more information on how to setup such a project, see [the user guide](tutorials/user_guide.md) and the tutorials.
@@ -86,12 +86,11 @@ import mantik
 client = mantik.ComputeBackendClient.from_env()
 
 client.submit_run(
-  experiment_id = <experiment ID>,
-  mlflow_parameters = <mlflow parameters>,
-  mlproject_path = <path to mlproject directory>,
-  backend_config_path= <path to backend configuration file relative to mlproject path>,
+  experiment_id=<experiment ID>,
+  mlflow_parameters=<mlflow parameters>,
+  mlproject_path="<path to mlproject directory>",
+  backend_config_path="<path to backend configuration file relative to mlproject path>",
 )
-``` 
 
 ## Accessing tracked experiments
 

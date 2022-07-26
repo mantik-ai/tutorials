@@ -1,13 +1,13 @@
-# Create apptainer images from Docker
+# Create Apptainer images from Docker
 
-**NOTE:** This tutorial is also valid for [singularity](https://sylabs.io/singularity/). For more information on the transition from singularity to apptainer, [see here](https://www.linuxfoundation.org/press-release/new-linux-foundation-project-accelerates-collaboration-on-container-systems-between-enterprise-and-high-performance-computing-environments/).
+**NOTE:** This tutorial is also valid for [Singularity](https://sylabs.io/singularity/). For more information on the transition from Singularity to Apptainer [see here](https://www.linuxfoundation.org/press-release/new-linux-foundation-project-accelerates-collaboration-on-container-systems-between-enterprise-and-high-performance-computing-environments/).
 
 Apptainer and Docker are both container runtime platforms that implement the OCI standard.
 
-While Docker is the most used platform, apptainer (formerly known as singularity) has been developed explicitly for HPC usage.
+While Docker is the most used platform, Apptainer (formerly known as Singularity) has been developed explicitly for HPC usage.
 
-It is more likely to find suitable Docker images, e.g. on [dockerhub](https://hub.docker.com/) or Dockerfiles in example projects than it is to find corresponding apptainer images.
-In this tutorial we show how apptainer images can be built from Docker images.
+It is more likely to find suitable Docker images, e.g. on [dockerhub](https://hub.docker.com/) or Dockerfiles in example projects than it is to find corresponding Apptainer images.
+In this tutorial we show how Apptainer images can be built from Docker images.
 
 ## Option 1: Build from local Docker image
 
@@ -17,7 +17,7 @@ In case you have a Docker image available locally, or you executed
 sudo docker pull <image>:<tag>
 ```
 
-apptainer images can be built from images that can be accessed via your Docker daemon:
+Apptainer images can be built from images that can be accessed via your Docker daemon:
 
 ```bash
 sudo apptainer build <image_name.sif> docker-daemon://<docker-image-name:image-tag>
@@ -35,7 +35,7 @@ sudo apptainer build <image_name.sif> docker://<docker-image-name:image-tag>
 
 ## Option 3: Build from definition file
 
-The most felxible option to build apptainer images is to define [definition files](https://apptainer.org/docs/user/main/definition_files.html) (sometimes also called recipes).
+The most flexible option to build Apptainer images is to write [definition files](https://apptainer.org/docs/user/main/definition_files.html) (also called _recipes_).
 
 As recipes are well-documented already, we will only cover the bare necessities for building from Docker images.
 
@@ -47,7 +47,9 @@ Apptainer recipes are text files, commonly named `recipe.def`. They contain a he
 
 The two relevant entries in the header for us are:
 
- - `Bootstrap`: Defines from which platform the base images are pulled. Interesting options are `docker` (pull from dockerhub) and `docker-daemon` (use a local Docker image).
+ - `Bootstrap`: Defines from which platform the base images are pulled. Interesting options are 
+   1. `docker`: pull from dockerhub
+   2. `docker-daemon`: use a local Docker image
  - `From`: Defines the base image to extend.
 
 An example header could look like this:
@@ -63,7 +65,7 @@ Here, only the two most frequently used sections are described briefly. For deta
 
 #### `%files`
 
-The `files` section is used to copy files into the image. Paths are relative to path from which `apptainer build` is executed. 
+The `files` section is used to copy files into the image. Paths are relative to the path from which `apptainer build` is executed. 
 
 **Tip:** Do not copy to user paths. When running the image, the user directories are automatically mounted. It can lead to confusion between mounted and copied files. Good places to copy your files to are `/opt` or `/project`.
 
@@ -89,4 +91,4 @@ From: python:3.7
 
 ### Known problems
 
-Some options from Docker can not be mapped to the apptainer logic. For a detailed explanation, [see here](https://apptainer.org/user-docs/master/singularity_and_docker.html#differences-and-limitations-vs-docker).
+Some options from Docker can not be mapped to the Apptainer logic. For a detailed explanation [see here](https://apptainer.org/user-docs/master/singularity_and_docker.html#differences-and-limitations-vs-docker).

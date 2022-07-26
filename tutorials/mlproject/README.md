@@ -2,9 +2,9 @@
 
 This tutorial will guide you throug the creation of an `mlproject` as it is used with `mlflow`. For more information, see the [mlflow documentation](https://www.mlflow.org/docs/latest/projects.html).
 
-## MLProject specification
+## MLproject specification
 
-The file [`MLProject`](https://www.mlflow.org/docs/latest/projects.html#mlproject-file) is required to configure your Machine Learning project to run with mlflow.
+The file [`MLproject`](https://www.mlflow.org/docs/latest/projects.html#mlproject-file) is required to configure your machine learning project to run with mlflow.
 
 The following entries are required:
 
@@ -12,9 +12,9 @@ The following entries are required:
  - `docker_env`: Docker image to run the project in
  - `entry_points`: Entry points for the project
 
-Let's say you want to name your project `my-project`, run it in the Docker image `my-docker-image` and configure one entrypoint called `main`. The corresponding `MLProject` then reads:
+Let's say you want to name your project `my-project`, run it in the Docker image `my-docker-image` and configure one entrypoint called `main`. The corresponding `MLproject` file then reads:
 
-```
+```yaml
 name: my-project
 
 docker_env:
@@ -30,18 +30,18 @@ entry_points:
 **Notes:**
 
  - We strongly suggest you use the `docker environment`. For alternatives, [see here](https://www.mlflow.org/docs/latest/projects.html#specifying-an-environment).
- - The `parameters` mapping in `MLProject` is not strictly needed. We include it here for the sake of completness, see also the  [runscript section](#runscript).
+ - The `parameters` mapping in `MLproject` is not strictly needed. We include it here for the sake of completness, see also the  [runscript section](#runscript).
 
 ## Containers
 
-You must provide the singularity / apptainer image in which your project can be executed under the name that is specified in the [backend config](#backend-config). For information on how to find or build the proper image, [see the containers tutorial](../containers/README.md).
+You must provide the Singularity/Apptainer image in which your project can be executed under the name that is specified in the [backend config](#backend-config). For information on how to find or build the proper image, [see the containers tutorial](../containers/README.md).
 
 ## Runscript
 
-In our example, the main runscript is `main.py` as defined in the [MLProject entry point](#mlproject-specification).
+In our example, the main runscript is `main.py` as defined in the [MLproject entry point](#mlproject-specification).
 In the file the training is configured. Make sure to use mlflow in it for tracking.
 
-The example below reads the parameter `alpha` from the commandline in order to access parameters as defined in `MLProject`. `mlflow` is used to log the parameter to the trakcing server.
+The example below reads the parameter `alpha` from the commandline in order to access parameters as defined in `MLproject`. `mlflow` is used to log the parameter to the tracking server.
 
 ```python
 import argparse
