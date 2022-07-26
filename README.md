@@ -2,18 +2,14 @@
 
 This is a collection of tutorials and demos for usage of the mantik platform.
 
-You can install all dependecies with either `poetry` or `pip`:
+You can install all dependecies with `pip`:
+
 
 ```bash
-poetry install
+pip install mantik==0.1.0
 ```
 
-or
-
-```bash
-pip install .
-```
-
+**Note**: This tutorial has been developed for mantik Version `0.1.0`.
 
 # Quickstart
 
