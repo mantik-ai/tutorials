@@ -1,10 +1,21 @@
 # The mlproject format
 
-This tutorial will guide you throug the creation of an `mlproject` as it is used with `mlflow`. For more information, see the [mlflow documentation](https://www.mlflow.org/docs/latest/projects.html).
+This tutorial will guide you through the creation of an `mlproject` as it is
+used with `mlflow`. For more information, see the 
+[mlflow documentation](https://www.mlflow.org/docs/latest/projects.html).
 
+The term `MLproject` is commonly used in three slightly different meanings:
+
+ - The `MLproject` file in which the project is configured.
+ - The standard name of the project directory (`mlproject`).
+ - The overall project.
+
+Most of the time it is evident from context what is meant.
 ## MLproject specification
 
-The file [`MLproject`](https://www.mlflow.org/docs/latest/projects.html#mlproject-file) is required to configure your machine learning project to run with mlflow.
+The file 
+[`MLproject`](https://www.mlflow.org/docs/latest/projects.html#mlproject-file) 
+is required to configure your machine learning project to run with mlflow.
 
 The following entries are required:
 
@@ -12,7 +23,9 @@ The following entries are required:
  - `docker_env`: Docker image to run the project in
  - `entry_points`: Entry points for the project
 
-Let's say you want to name your project `my-project`, run it in the Docker image `my-docker-image` and configure one entrypoint called `main`. The corresponding `MLproject` file then reads:
+Let's say you want to name your project `my-project`, run it in the Docker 
+image `my-docker-image` and configure one entrypoint called `main`. The 
+corresponding `MLproject` file then reads:
 
 ```yaml
 name: my-project
@@ -29,19 +42,28 @@ entry_points:
 
 **Notes:**
 
- - We strongly suggest you use the `docker environment`. For alternatives, [see here](https://www.mlflow.org/docs/latest/projects.html#specifying-an-environment).
- - The `parameters` mapping in `MLproject` is not strictly needed. We include it here for the sake of completness, see also the  [runscript section](#runscript).
+ - We strongly suggest you use the `docker environment`. For alternatives 
+[see here](https://www.mlflow.org/docs/latest/projects.html#specifying-an-environment).
+ - The `parameters` mapping in `MLproject` is not strictly needed. We include
+it here for the sake of completness, see also the  [runscript section](#runscript).
 
 ## Containers
 
-You must provide the Singularity/Apptainer image in which your project can be executed under the name that is specified in the [backend config](#backend-config). For information on how to find or build the proper image, [see the containers tutorial](../containers/README.md).
+You must provide the Singularity/Apptainer image in which your project can be
+executed under the name that is specified in the
+[backend config](#backend-config). For information on how to find or build the
+proper image, [see the containers tutorial](../containers/README.md).
 
 ## Runscript
 
-In our example, the main runscript is `main.py` as defined in the [MLproject entry point](#mlproject-specification).
-In the file in which the training is configured, make sure to use mlflow for tracking.
+In our example, the main runscript is `main.py` as defined in the
+[MLproject entry point](#mlproject-specification).
+In the file in which the training is configured, make sure to use mlflow for
+tracking.
 
-The example below reads the parameter `alpha` from the commandline in order to access parameters as defined in `MLproject`. `mlflow` is used to log the parameter to the tracking server.
+The example below reads the parameter `alpha` from the commandline in order to
+access parameters as defined in `MLproject`. `mlflow` is used to log the
+parameter to the tracking server.
 
 ```python
 import argparse
@@ -62,9 +84,13 @@ if __name__ == "__main__":
 
 ## backend-config
 
-The backend config is the only extension to the standard `mlproject` as proposed by mlflow. Here, all configuration options for UNICORE and the scheduler on the compute backend (usually SLURM) are collected.
+The backend config is one of the
+[extensions to the standard `mlproject` directory structure](#extensions-to-the-mlproject-structure)
+as proposed by mlflow. Here, all configuration options for UNICORE and the
+scheduler on the compute backend (usually SLURM) are collected.
 
-The config is written in JSON format. There are few mandatory entries, as we rely on the default values set by UNICORE.
+The config is written in JSON format. There are few mandatory entries, as we
+rely on the default values set by UNICORE.
 
 ```JSON
 {
@@ -86,16 +112,32 @@ The config is written in JSON format. There are few mandatory entries, as we rel
 
 The most common entries are:
 
- - `SingularityImage` (required): Defines which singularity image is used to run the project in. The path is relative to `mlproject` directory.
- - `UnicoreApuUrl` (required): Specifies how UNICORE can be reached. For JUWELS you can leave this entry as it is.
-- `Resources` (required): Specify resources (see [here](https://sourceforge.net/p/unicore/wiki/Job_Description/)). This is specific to the SLURM scheduler.
-  - `Queue` (required): Queue to schedule the job to.
-  - `Runtime` (optional): Maximum runtime of the job.
-  - `Nodes` (optional): Number of nodes to use for job execution.
-  - `CPUs` (optional): Number of CPUs to use.
-  - `CPUsPerNode` (optional): Number of CPUs per node.
-  - `Memory` (optional): Memory to allocate for the job.
-  - `Reservation` (optional): Batch system reservation ID
-  - `NodeConstraints` (optional): Batch system node constraints
-  - `QoS` (optional): Batch system QoS
-- `Environment` (optional): Pass environment variables as key, value pairs that are available at runtime.
+ - `SingularityImage` (*required*): Defines which singularity image is used to
+run the project in. The path is relative to `mlproject` directory.
+ - `UnicoreApuUrl` (*required*): Specifies how UNICORE can be reached. For JUWELS
+you can leave this entry as it is.
+ - `Resources` (*required*): Specify resources
+(see [here](https://sourceforge.net/p/unicore/wiki/Job_Description/)). This is
+specific to the SLURM scheduler.
+  - `Queue` (*required*): Queue to schedule the job to.
+  - `Runtime` (*optional*): Maximum runtime of the job.
+  - `Nodes` (*optional*): Number of nodes to use for job execution.
+  - `CPUs` (*optional*): Number of CPUs to use.
+  - `CPUsPerNode` (*optional*): Number of CPUs per node.
+  - `Memory` (*optional*): Memory to allocate for the job.
+  - `Reservation` (*optional*): Batch system reservation ID
+  - `NodeConstraints` (*optional*): Batch system node constraints
+  - `QoS` (*optional*): Batch system QoS
+ - `Environment` (*optional*): Pass environment variables as key, value pairs
+that are available at runtime. 
+
+
+## Extensions to the MLproject structure
+
+We extend the [mlflow MLproject](https://www.mlflow.org/docs/latest/projects.html)
+in the following ways:
+
+ - We require the [backend configuration](#backend-config) to be present in the
+`mlproject` directory.
+ - We require an Apptainer image to be referenced in the backend configuration
+and the image to be present in the `mlproject` directory.
