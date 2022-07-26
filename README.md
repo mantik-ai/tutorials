@@ -53,6 +53,9 @@ import mlflow
 mlflow.autolog()
 ```
 
+A good resource to get started with the tracking is the 
+[mlflow quickstart](https://www.mlflow.org/docs/latest/quickstart.html).
+
 ## Usage: Scheduling jobs with UNICORE
 
 We use [UNICORE](https://www.unicore.eu/) to schedule jobs on HPC systems.
