@@ -121,7 +121,6 @@ The two possibilities to configure container-based projects with mantik are:
 Currently, you need an Apptainer image locally that is send via the compute backend to HPC instances in order to run your code in it.
 For installation instructions, see [the apptainer documentation](https://apptainer.org/docs/admin/main/installation.html).
 
-Note: Singularity CE (community edition) has been renamed to apptainer.
 
 #### Docker
 
@@ -131,9 +130,9 @@ If no Apptainer image is available, the client is capable to automatically build
 
 #### Singularity / Apptainer
 
-Singularity or apptainer images are stored directly in the directory they have been built in and can be sent like any other file. The `ComputeBackendClient` transfers the image to the compute resource provider (e.g. JUWELS) and triggers running the image via SLURM.
+Apptainer images are stored directly in the directory they have been built in and can be sent like any other file. The `ComputeBackendClient` transfers the image to the compute resource provider (e.g. JUWELS) and triggers running the image via SLURM.
 
-For more information on apptainer images, [see the documentation](https://apptainer.org/docs/user/main/cli/apptainer_build.html).
+For more information on Apptainer images [see the documentation](https://apptainer.org/docs/user/main/cli/apptainer_build.html).
 
 ### Backend configuration
 
