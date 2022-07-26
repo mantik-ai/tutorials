@@ -6,7 +6,7 @@ import mantik
 
 logging.basicConfig(level="DEBUG")
 
-# NOTE: MANTIK_USER and MANTIK_PASSWORD must be set
+# NOTE: MANTIK_USERNAME and MANTIK_PASSWORD must be set
 
 FILE_DIR = pathlib.Path(__file__).parent
 ML_PROJECT_DIR = FILE_DIR / "mlproject"

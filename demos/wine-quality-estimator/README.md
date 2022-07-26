@@ -25,7 +25,7 @@ installed, ask an admin to provide you with the image.
 
 ## Build the required Singularity image
 
-For this demo project we provide a singularity / apptainer definition file (`mlprojcet/recipe.def`).
+For this demo project we provide a Singularity (Apptainer) definition file (`mlprojcet/recipe.def`).
 
 Build the image as follows:
 

@@ -43,7 +43,7 @@ Artifacts are accessible via the mlflow UI. In the backend, they are stored in a
 
 ## Compute backend service
 
-The compute backend service API can be used to seamlessly schedule jobs with UNICORE and automatically track Machine Learning jobs to the mantik platform.
+The compute backend service API can be used to seamlessly schedule jobs with UNICORE and automatically track machine learning jobs to the mantik platform.
 
 We provide a client to interact with the service:
 
@@ -57,7 +57,7 @@ We recommend that you set all your credentials as [environment variables](#requi
 - `MANTIK_USERNAME`
 - `MANTIK_PASSWORD`
 - `MLFLOW_TRACKING_URI`
-- `MANTIK_UNICORE_USER`
+- `MANTIK_UNICORE_USERNAME`
 - `MANTIK_UNICORE_PROJECT`
 - `MANTIK_UNICORE_PASSWORD`
 
@@ -84,11 +84,11 @@ import mantik
 client = mantik.ComputeBackendClient.from_env()
 
 response = client.submit_run(
-    experiment_id = <experiment id>,
-    mlproject_path = <path to mlproject directory>,
-    mlflow_parameters = <key value pairs for mlflow parameters and values>,
-    backend_config_path = <path to backend configuration file relative to mlproject_path>,
-    entry_point = <entry point of the mlproject>,
+    experiment_id=<experiment id>,
+    mlproject_path="<path to mlproject directory>",
+    mlflow_parameters ={<key: value pairs for mlflow parameters and values>},
+    backend_config_path="<path to backend configuration file relative to mlproject_path>",
+    entry_point="<entry point of the mlproject>",
 )
 ```
 
@@ -103,7 +103,7 @@ The response contains experiment and run id, so that you can find your runs easi
 
 ## mlproject setup
 
-The mantik ComputeBackendClient expects a certain structure of you Machine Learning projects, that mainly follows the conventions for [mlflow projects](https://www.mlflow.org/docs/latest/projects.html). The differences are described in more detail below:
+The `mantik.ComputeBackendClient` expects a certain structure of you machine learning projects that mainly follows the conventions for [mlflow projects](https://www.mlflow.org/docs/latest/projects.html). The differences are described in more detail below:
 
  - We only support containerized projects.
  - An additional file for the compute backend configuration is needed.
@@ -118,7 +118,7 @@ The two possibilities to configure container-based projects with mantik are:
  - build a Docker image locally and reference it in the [mlflow Docker container environment](https://www.mlflow.org/docs/latest/projects.html#project-docker-container-environments), or
  - directly build a singularity/apptainer image and reference it in the [backend configuration](#backend-configuration).
 
-Currently, you need a singularity or apptainer image locally that is send via the compute backend to HPC instances in order to run your code in it.
+Currently, you need an Apptainer image locally that is send via the compute backend to HPC instances in order to run your code in it.
 For installation instructions, see [the apptainer documentation](https://apptainer.org/docs/admin/main/installation.html).
 
 Note: Singularity CE (community edition) has been renamed to apptainer.
@@ -127,7 +127,7 @@ Note: Singularity CE (community edition) has been renamed to apptainer.
 
 [mlflow offers the possibility to define Docker container environments for your mlproject](https://www.mlflow.org/docs/latest/projects.html#project-docker-container-environments). We strongly suggest you to setup your projects in this way.
 
-If no singularity or apptainer image is available, the client is capable to automatically build an image from a Docker image.
+If no Apptainer image is available, the client is capable to automatically build an image from a Docker image.
 
 #### Singularity / Apptainer
 
@@ -206,7 +206,7 @@ The application code is able to construct the actual API URL from this.
 
 UNICORE uses username and password to authenticate users against the compute resource provider.
 
-For running on JUWELS, you will need JUDOOR account and access to a compute project.
+For running on JUWELS, you will need JuDoor account and access to a compute project.
 
 The credentials for authentication as well as the accounting project are read
 from the environment variables `MANTIK_UNICORE_USER`, `MANTIK_UNICORE_PASSWORD`,
@@ -228,13 +228,13 @@ A fully functional demonstration is available [here](../demos/wine-quality-estim
 The platform can only be accessed by known users who must provide username and 
 password. It is secured via AWS Cognito. All API calls must include a JWT 
 (JsonWebToken) to be granted access. This token is retrieved automatically when
-using `mantik.init_tracking()`or at `ComputeBackendClient`
+using `mantik.init_tracking()` or at `ComputeBackendClient`
 instantiation. Tokens are saved in `~/.mantik/tokens.json`.
 
 All traffic is encrypted by SSL standard. Since UNICORE credentials must be 
-provided in the `ComputeBackendClient.submit_run`method, these are passed 
+provided in the `ComputeBackendClient.submit_run` method, these are passed 
 as HTTP form fields, which are automatically encrypted with SSL as well.
 
-For internal security on the Cloud we use AWS IAM user management and enforce 
+For internal security in the cloud we use AWS IAM user management and enforce 
 the principle of least privilege.
 
