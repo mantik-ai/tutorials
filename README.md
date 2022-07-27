@@ -30,7 +30,7 @@ export MANTIK_PASSWORD=<password>
 export MLFLOW_TRACKING_URI=<tracking uri>
 ```
 
-For more information on the requires environment variables see
+For more information on the required environment variables see
 [the user guide](tutorials/user_guide.md#required-passwords-and-environment-variables).
 
 In your script, simply add
@@ -66,7 +66,7 @@ demo directory.
 For more information on how to setup such a project, see
 [the user guide](tutorials/user_guide.md) and the tutorials.
 
-Set the required environment variables:
+Set the [required environment variables](tutorials/user_guide.md#required-passwords-and-environment-variables):
 
 ```commandline
 export MANTIK_UNICORE_USERNAME=<unicore user>
@@ -91,7 +91,6 @@ client.submit_run(
   mlproject_path="<path to mlproject directory>",
   backend_config_path="<path to backend configuration file relative to mlproject path>",
 )
-```
 
 ## Accessing tracked experiments
 

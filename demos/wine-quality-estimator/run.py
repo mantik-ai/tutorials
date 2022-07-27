@@ -1,4 +1,3 @@
-"""Integration test for compute backend service."""
 import logging
 import pathlib
 
@@ -6,7 +5,6 @@ import mantik
 
 logging.basicConfig(level="DEBUG")
 
-# NOTE: MANTIK_USERNAME and MANTIK_PASSWORD must be set
 
 FILE_DIR = pathlib.Path(__file__).parent
 ML_PROJECT_DIR = FILE_DIR / "mlproject"

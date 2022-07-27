@@ -116,6 +116,6 @@ From: python:3.7
 
 ### Known problems
 
-Some options from Docker can not be mapped to the Apptainer logic. For a
+Some options from Docker cannot be mapped to the Apptainer logic. For a
 detailed explanation
 [see here](https://apptainer.org/user-docs/master/singularity_and_docker.html#differences-and-limitations-vs-docker).

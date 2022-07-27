@@ -14,11 +14,11 @@ In Decision Support Systems, Elsevier, 47(4):547-553, 2009."
 ## Prerequisites
 
 You will need:
- - JUDOOR account and access to a compute project on JUWELS
- - Mantik AWS Cognito User (ask an admin to provide you with one)
+ - a JuDoor account and access to a compute project on JUWELS, and
+ - a Mantik AWS Cognito User (ask an admin to provide you with one).
 
 **Note:** In this demo it is assumed that the singularity image for execution
-is already present as `mlproject/wine-quality-executor.sif`. If you don't have
+is already present as `mlproject/wine-quality-executor.sif` or can be built locally. If you don't have
 singularity installed, ask an admin to provide you with the image.
 
 **Note 2:** In this demo we use singularity images since it was tested with
@@ -43,7 +43,6 @@ singularity build mlproject/wine-quality-executor.sif mlproject/recipe.def
 
 ## Setup the environment
 
-You will need to set environment variables:
 
 The credentials for authentication as well as the accounting project are read
 from the environment variables `MANTIK_UNICORE_USER`,
