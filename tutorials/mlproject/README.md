@@ -82,55 +82,15 @@ if __name__ == "__main__":
         mlflow.log_param("alpha", args.alpha)
 ```
 
-## backend-config
+## Backend configuration
 
-The backend config is one of the
+The backend configuration is one of the
 [extensions to the standard `mlproject` directory structure](#extensions-to-the-mlproject-structure)
 as proposed by mlflow. Here, all configuration options for UNICORE and the
 scheduler on the compute backend (usually SLURM) are collected.
 
-The config is written in JSON format. There are few mandatory entries, as we
-rely on the default values set by UNICORE.
-
-```JSON
-{
-  "SingularityImage": "<path to Singularity image>",
-  "UnicoreApiUrl": "https://zam2125.zam.kfa-juelich.de:9112/JUWELS/rest/core",
-  "Environment": {
-    "TEST_ENV_VAR": "variable value"
-  },
-  "Resources": {
-    "Runtime": "12h",
-    "Queue": "batch",
-    "Nodes": 1,
-    "CPUs": 1,
-    "CPUsPerNode": 1,
-    "Memory": "12GiB",
-  }
-}
-```
-
-The most common entries are:
-
- - `SingularityImage` (*required*): Defines which singularity image is used to
-run the project in. The path is relative to `mlproject` directory.
- - `UnicoreApuUrl` (*required*): Specifies how UNICORE can be reached. For JUWELS
-you can leave this entry as it is.
- - `Resources` (*required*): Specify resources
-(see [here](https://sourceforge.net/p/unicore/wiki/Job_Description/)). This is
-specific to the SLURM scheduler.
-  - `Queue` (*required*): Queue to schedule the job to.
-  - `Runtime` (*optional*): Maximum runtime of the job.
-  - `Nodes` (*optional*): Number of nodes to use for job execution.
-  - `CPUs` (*optional*): Number of CPUs to use.
-  - `CPUsPerNode` (*optional*): Number of CPUs per node.
-  - `Memory` (*optional*): Memory to allocate for the job.
-  - `Reservation` (*optional*): Batch system reservation ID
-  - `NodeConstraints` (*optional*): Batch system node constraints
-  - `QoS` (*optional*): Batch system QoS
- - `Environment` (*optional*): Pass environment variables as key, value pairs
-that are available at runtime. 
-
+The format of the configuration file is documented in the 
+[user guide](../user_guide.md#backend-configuration).
 
 ## Extensions to the MLproject structure
 

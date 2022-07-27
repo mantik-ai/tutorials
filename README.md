@@ -2,15 +2,6 @@
 
 This is a collection of tutorials and demos for usage of the mantik platform.
 
-You can install all dependecies with `pip`:
-
-
-```bash
-pip install mantik==0.1.0
-```
-
-**Note**: This tutorial has been developed for mantik Version `0.1.0`.
-
 # Quickstart
 
 ## Installation
@@ -18,13 +9,20 @@ pip install mantik==0.1.0
 The mantik client can be installed as a PyPI package:
 
 ```commandline
-pip install mantik
+pip install mantik==0.1.0
 ```
+
+**Note**: This tutorial has been developed for mantik Version `0.1.0`.
 
 ## Usage: Tracking
 
 You will need an account on the mantik platform in order to use the tracking 
-API. Set your credentials as environment variables:
+API.
+
+Remember that upon first login to the mantik platform, you must change your
+password. Tracking will only worked with a changed password as well.
+
+Set your credentials as environment variables:
 
 ```commandline
 export MANTIK_USERNAME=<username>
@@ -32,8 +30,8 @@ export MANTIK_PASSWORD=<password>
 export MLFLOW_TRACKING_URI=<tracking uri>
 ```
 
-`MLFLOW_TRACKING_URI` in this case refers to the mantik platform URL. 
-Don't forget to add `https://`!
+For more information on the requires environment variables see
+[the user guide](tutorials/user_guide.md#required-passwords-and-environment-variables).
 
 In your script, simply add
 
@@ -65,7 +63,7 @@ JuDoor username and password) and access to a compute project.
 
 For an example project that can be run on JUWELS with mantik, check out the
 demo directory.
-For more information on how to setup such a project, seei
+For more information on how to setup such a project, see
 [the user guide](tutorials/user_guide.md) and the tutorials.
 
 Set the required environment variables:

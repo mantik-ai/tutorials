@@ -8,48 +8,9 @@ The mantik platform offers the full capabilities of
 remotely so that you can work from any machine. The tracking server is secured
 by username and password, see also the [security section](#security).
 
-### Simple tracking
 
-You can use all mlflow tracking functions with the mantik platform.
-
-The command 
-
-```python
-import mantik
-
-mantik.init_tracking()
-```
-
-reads environment variables
-([see below](#required-passwords-and-environment-variables)), acquires an API
-token for secure communication with the tracking server and points mlflow to
-the remote tracking server that is part of the mantik platform.
-
-The required environment variables are:
- - `MANTIK_USERNAME`
- - `MANTIK_PASSWORD`
- - `MLFLOW_TRACKING_URI`
-
-After that, you can use
-[mlflow tracking commands](https://www.mlflow.org/docs/latest/tracking.html)
-in your scripts to configure what is tracked when you train your Machine
-Learning models.
-
-
-### Artifacts
-
-Besides parameters and metrics, also so-called artifacts can be logged.
-Artifacts can be any files. You are free to log any file like object with the
-
-```python
-mlflow.log_artifact(...)
-```
-
-method.
-
-Artifacts are accessible via the mlflow UI. In the backend, they are stored in
-a dedicated S3 bucket and secured via AWS Cognito.
-
+A tutorial on the tracking mechanisms can be found
+[here](tracking/README.md).
 
 ## Compute backend service
 
@@ -207,23 +168,23 @@ resources that are allocated for the job.
 
 The most common entries are:
 
- - `SingularityImage` (required): Defines which singularity image is used to
+ - `SingularityImage` (*required*): Defines which singularity image is used to
 run the project in. The path is relative to `mlproject` directory.
- - `UnicoreApuUrl` (required): Specifies how UNICORE can be reached. For JUWELS
+ - `UnicoreApuUrl` (*required*): Specifies how UNICORE can be reached. For JUWELS
 you can leave this entry as it is.
- - `Resources` (required): Specify resources
+ - `Resources` (*required*): Specify resources
 (see [here](https://sourceforge.net/p/unicore/wiki/Job_Description/)).
 This is specific to the SLURM scheduler.
-  - `Queue` (required): Queue to schedule the job to.
-  - `Runtime` (optional): Maximum runtime of the job.
-  - `Nodes` (optional): Number of nodes to use for job execution.
-  - `CPUs` (optional): Number of CPUs to use.
-  - `CPUsPerNode` (optional): Number of CPUs per node.
-  - `Memory` (optional): Memory to allocate for the job.
-  - `Reservation` (optional): Batch system reservation ID
-  - `NodeConstraints` (optional): Batch system node constraints
-  - `QoS` (optional): Batch system QoS
- - `Environment` (optional): Pass environment variables as key, value pairs
+  - `Queue` (*required*): Queue to schedule the job to.
+  - `Runtime` (*optional*): Maximum runtime of the job.
+  - `Nodes` (*optional*): Number of nodes to use for job execution.
+  - `CPUs` (*optional*): Number of CPUs to use.
+  - `CPUsPerNode` (*optional*): Number of CPUs per node.
+  - `Memory` (*optional*): Memory to allocate for the job.
+  - `Reservation` (*optional*): Batch system reservation ID
+  - `NodeConstraints` (*optional*): Batch system node constraints
+  - `QoS` (*optional*): Batch system QoS
+ - `Environment` (*optional*): Pass environment variables as key, value pairs
 that are available at runtime.
 
 

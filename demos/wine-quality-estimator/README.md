@@ -72,34 +72,15 @@ export MANTIK_USERNAME=<user>
 export MANTIK_PASSWORD=<password>
 ```
 
-### The backend config
+### The backend configuration file
 
 The backend config is in JSON format and may contain information for the
 resources that are allocated for the job.
 
-```JSON
-{
-  "SingularityImage": "<absolute path to Singularity image>",
-  "UnicoreApiUrl": "https://zam2125.zam.kfa-juelich.de:9112/JUWELS/rest/core",
-  "Environment": {
-    "TEST_ENV_VAR": "variable value"
-  },
-  "Resources": {
-    "Runtime": "12h",
-    "Queue": "batch",
-    "Nodes": 1,
-    "CPUs": 1,
-    "CPUsPerNode": 1,
-    "Memory": "12GiB",
-    "Reservation": "<batch system reservation ID>",
-    "NodeConstraints": "<node constraints>",
-    "QoS": "<batch system QoS>"
-  }
-}
-```
+We provide an example backend configuration in `mlproject/unicore-config.json`.
 
-For more details about each option see
-[the UNICORE job description](https://sourceforge.net/p/unicore/wiki/Job_Description/).
+For documentation on the settings, see 
+[the user guide](../../tutorials/user_guide.md#backend-configuration).
 
 ### Dependency management
 

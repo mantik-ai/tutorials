@@ -4,6 +4,35 @@ This tutorial helps you to get started with the mlflow tracking API. For
 detailed information, please refer to the
 [mlflow documentation](https://www.mlflow.org/docs/latest/tracking.html#logging-data-to-runs).
 
+## Getting started
+
+### Simple tracking 
+ 
+You can use all mlflow tracking functions with the mantik platform. 
+ 
+The command  
+ 
+```python 
+import mantik 
+ 
+mantik.init_tracking() 
+``` 
+ 
+reads environment variables 
+([see the user guide for detailes](../user_guide.md#required-passwords-and-environment-variables)),
+acquires an API token for secure communication with the tracking server and
+points mlflow to the remote tracking server that is part of the mantik platform.
+
+The required environment variables for tracking are: 
+ - `MANTIK_USERNAME` 
+ - `MANTIK_PASSWORD` 
+ - `MLFLOW_TRACKING_URI` 
+ 
+After that, you can use 
+[mlflow tracking commands](https://www.mlflow.org/docs/latest/tracking.html) 
+in your scripts to configure what is tracked when you train your Machine 
+Learning models. 
+ 
 ## Remote tracking
 
 By default, mlflow tracks experiments to your local filesystem. In order to use

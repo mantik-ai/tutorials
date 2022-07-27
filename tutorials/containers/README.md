@@ -1,9 +1,7 @@
 # Create Apptainer images from Docker
 
-**NOTE:** This tutorial is also valid for
-[Singularity](https://sylabs.io/singularity/). For more information on the
-transition from Singularity to Apptainer
-[see here](https://www.linuxfoundation.org/press-release/new-linux-foundation-project-accelerates-collaboration-on-container-systems-between-enterprise-and-high-performance-computing-environments/).
+This tutorial gives basic instructions on working with containers, especially
+Docker and Apptainer containers as well as their relation to one another.
 
 Apptainer and Docker are both container runtime platforms that implement the
 OCI standard.
@@ -15,6 +13,11 @@ It is more likely to find suitable Docker images, e.g. on
 [dockerhub](https://hub.docker.com/) or Dockerfiles in example projects than
 it is to find corresponding Apptainer images.
 In this tutorial we show how Apptainer images can be built from Docker images.
+
+**NOTE:** This tutorial is also valid for
+[Singularity](https://sylabs.io/singularity/). For more information on the
+transition from Singularity to Apptainer
+[see here](https://www.linuxfoundation.org/press-release/new-linux-foundation-project-accelerates-collaboration-on-container-systems-between-enterprise-and-high-performance-computing-environments/).
 
 ## Option 1: Build from local Docker image
 
