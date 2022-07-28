@@ -237,7 +237,7 @@ For `MLFLOW_TRACKING_URI` you can simply provide the base-url of the mantik
 platform, e.g.
 
 ```bash
-export MLFLOW_TRACKING_URI=https://test.cloud.mantik.ai
+export MLFLOW_TRACKING_URI=https://cloud.mantik.ai
 ```
 The application code is able to construct the actual API URL from this.
 

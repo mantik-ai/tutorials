@@ -29,6 +29,8 @@ export MANTIK_USERNAME=<username>
 export MANTIK_PASSWORD=<password>
 export MLFLOW_TRACKING_URI=<tracking uri>
 ```
+For the `MLFLOW_TRACKING_URI` you have to provide the base URL of the mantik platform in the form `https://<host>.<domain>`, e.g. `export MLFLOW_TRACKING_URI=https://cloud.mantik.ai`. 
+It's important that the URI has to be the root path!
 
 For more information on the required environment variables see
 [the user guide](instructions/user_guide.md#required-passwords-and-environment-variables).
