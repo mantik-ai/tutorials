@@ -2,6 +2,10 @@
 
 This is a collection of tutorials and demos for usage of the mantik platform.
 
+It is assumed that you already have an account for the mantik platform and 
+have logged in to the UI at least once. If this is not the case, ask the
+platform admins for an account (currently @thomose and @faemmi).
+
 # Quickstart
 
 ## Installation
@@ -29,7 +33,9 @@ export MANTIK_USERNAME=<username>
 export MANTIK_PASSWORD=<password>
 export MLFLOW_TRACKING_URI=<tracking uri>
 ```
-For the `MLFLOW_TRACKING_URI` you have to provide the base URL of the mantik platform in the form `https://<host>.<domain>`, e.g. `export MLFLOW_TRACKING_URI=https://cloud.mantik.ai`. 
+For the `MLFLOW_TRACKING_URI` you have to provide the base URL of the mantik
+platform in the form `https://<host>.<domain>`, e.g.
+`export MLFLOW_TRACKING_URI=https://cloud.mantik.ai`. 
 It's important that the URI has to be the root path!
 
 For more information on the required environment variables see
