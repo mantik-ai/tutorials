@@ -26,7 +26,7 @@ You will need an account on the mantik platform in order to use the tracking
 API.
 
 Remember that upon first login to the mantik platform, you must change your
-password. Tracking will only worked with a changed password as well.
+password. Tracking will only work with a changed password as well.
 
 Set your credentials as environment variables:
 
@@ -101,6 +101,7 @@ client.submit_run(
   mlproject_path="<path to mlproject directory>",
   backend_config_path="<path to backend configuration file relative to mlproject path>",
 )
+```
 
 ## Accessing tracked experiments
 
