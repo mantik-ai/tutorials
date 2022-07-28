@@ -31,7 +31,7 @@ export MLFLOW_TRACKING_URI=<tracking uri>
 ```
 
 For more information on the required environment variables see
-[the user guide](tutorials/user_guide.md#required-passwords-and-environment-variables).
+[the user guide](instructions/user_guide.md#required-passwords-and-environment-variables).
 
 In your script, simply add
 
@@ -64,9 +64,9 @@ JuDoor username and password) and access to a compute project.
 For an example project that can be run on JUWELS with mantik, check out the
 demo directory.
 For more information on how to setup such a project, see
-[the user guide](tutorials/user_guide.md) and the tutorials.
+[the user guide](instructions/user_guide.md) and the tutorials.
 
-Set the [required environment variables](tutorials/user_guide.md#required-passwords-and-environment-variables):
+Set the [required environment variables](instructions/user_guide.md#required-passwords-and-environment-variables):
 
 ```commandline
 export MANTIK_UNICORE_USERNAME=<unicore user>

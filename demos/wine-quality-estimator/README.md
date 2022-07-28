@@ -79,7 +79,7 @@ resources that are allocated for the job.
 We provide an example backend configuration in `mlproject/unicore-config.json`.
 
 For documentation on the settings, see 
-[the user guide](../../tutorials/user_guide.md#backend-configuration).
+[the user guide](../../instructions/user_guide.md#backend-configuration).
 
 ### Dependency management
 
