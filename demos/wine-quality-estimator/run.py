@@ -14,7 +14,7 @@ if __name__ == "__main__":
     client = mantik.ComputeBackendClient.from_env()
 
     response = client.submit_run(
-        experiment_id=1,
+        experiment_id=0,
         mlflow_parameters={"alpha": 0.3, "l1_ratio": 0.6},
         backend_config_path="unicore-config.json",
         mlproject_path=ML_PROJECT_DIR,
