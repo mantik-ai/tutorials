@@ -4,7 +4,9 @@ This is a collection of tutorials and demos for usage of the mantik platform.
 
 It is assumed that you already have an account for the mantik platform and 
 have logged in to the UI at least once. If this is not the case, ask the
-platform admins for an account (currently @thomose and @faemmi).
+platform admins for an account (currently 
+[@thomose](https://github.com/thomose) and 
+[@faemmi](https://github.com/faemmi)).
 
 # Quickstart
 
