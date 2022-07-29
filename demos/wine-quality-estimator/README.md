@@ -81,6 +81,10 @@ We provide an example backend configuration in `mlproject/unicore-config.json`.
 For documentation on the settings, see 
 [the user guide](../../instructions/user_guide.md#backend-configuration).
 
+### Running the demo
+
+The demo can be run by invoking `python run.py`.
+
 ### Dependency management
 
 This project needs the python packages `mantik` and `scikit-learn`. Both are
