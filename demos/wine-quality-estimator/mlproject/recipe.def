@@ -1,0 +1,9 @@
+Bootstrap: docker
+From: python:3.7-slim
+
+%post
+  pip install mantik==0.1.0
+  pip install scikit-learn==1.0.2
+ 
+%environment
+  GIT_PYTHON_REFRESH=quiet 
