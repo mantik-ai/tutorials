@@ -8,19 +8,19 @@ platform admins for an account (currently
 [@thomose](https://github.com/thomose) and
 [@faemmi](https://github.com/faemmi)).
 
-# Quickstart
+## Quickstart
 
-**Note**: This tutorial has been developed for mantik Version `0.1.1`.
+**Note**: This tutorial has been developed for mantik Version `0.1.2`.
 
-## Installation
+### Installation
 
 The mantik client can be installed as a PyPI package:
 
-```commandline
-pip install mantik==0.1.1
+```bash
+pip install mantik==0.1.2
 ```
 
-## Usage: Tracking
+### Usage: Tracking
 
 You will need an account on the mantik platform in order to use the tracking
 API.
@@ -30,7 +30,7 @@ password. Tracking will only work with a changed password as well.
 
 Set your credentials as environment variables:
 
-```commandline
+```bash
 export MANTIK_USERNAME=<username>
 export MANTIK_PASSWORD=<password>
 export MLFLOW_TRACKING_URI=<tracking uri>
@@ -55,12 +55,12 @@ in a shell from a subprocess such as a Python program. Since some functionality 
 requires the respective environment variable as a global variable, it is also possible to use
 the mantik CLI.
 
-### CLI
+#### CLI
 
 To initialize the tracking with mantik from the CLI and directly set the access token as a
 global environment variable, use the `eval` bash command with the CLI command `mantik init`:
 
-```commandline
+```bash
 eval $(mantik init)
 ```
 
@@ -68,11 +68,11 @@ If you only want to pass the token as a local environment variable to the contex
 or command block instead of setting it as a global environment variable, use the `env` bash
 command with the `--no-export` flag:
 
-```commandline
+```bash
 env $(mantik init --no-export) <command>
 ```
 
-### Python
+#### Python
 
 Equivalently, the respective `mantik.init_tracking()` command can be used in Python. This
 also requires the above environment variables to be set. In the entry point of your script,
@@ -111,7 +111,7 @@ For more information on how to setup such a project, see
 
 Set the [required environment variables](instructions/user_guide.md#required-passwords-and-environment-variables):
 
-```commandline
+```bash
 export MANTIK_UNICORE_USERNAME=<unicore user>
 export MANTIK_UNICORE_PASSWORD=<unicore password>
 export MANTIK_UNICORE_PROJECT=<compute project>
@@ -121,7 +121,21 @@ export MANTIK_USERNAME=<mantik platform user>
 export MANTIK_PASSWORD=<mantik platform password>
 ```
 
-To run the example, execute
+To run the example, you can either use the CLI or Python.
+
+### CLI
+
+```bash
+mantik run <path to mlproject directory> \
+  --experimend-id <MLflow experiment ID> \
+  --entry-point <entry point name> \
+  --backend-config <path to backend configuration file relative to mlproject path>
+  -P <entry point parameter>=<value>
+  -P <another entry point parameter>=<value>
+
+```
+
+### Python
 
 ```python
 import mantik
@@ -130,7 +144,7 @@ client = mantik.ComputeBackendClient.from_env()
 
 client.submit_run(
   experiment_id=<experiment ID>,
-  mlflow_parameters=<mlflow parameters>,
+  mlflow_parameters=<mlflow entry point parameters>,
   mlproject_path="<path to mlproject directory>",
   backend_config_path="<path to backend configuration file relative to mlproject path>",
 )
