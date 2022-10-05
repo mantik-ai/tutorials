@@ -157,9 +157,28 @@ resources that are allocated for the job.
 
 The config entries are:
 
-- For usage of Singularity images _either_ of the following is required:
-  - `SingularityImage` (_required_): Defines which singularity image is used to run the project in. The path is relative to `mlproject` directory.
-  - `RemoteSingularityImagePath` (_required_): Absolute path of a Singularity image on the remote system to run the project in.
+- `SingularityImage` (_required_): Defines which singularity image is used to run the project in.
+  - `Path` (_required_): Path to the Singularity image file.
+  - `Type` (_optional_, default is `local`): Whether the image is stored locally or remotely.
+    - `local`: Local path to the image file, either relative or absolute.
+      If the given path is relative, it is assumed to be relative to `mlproject` directory.
+    - `remote`: Absolute path to the image file on the remote system.
+  
+  Local image:
+
+  ```yaml
+  SingularityImage:
+    Path: image.sif
+    Type: local
+  ```
+
+  Remote image:
+
+  ```yaml
+  SingularityImage:
+    Path: /path/on/remote/system/image.sif
+    Type: remote
+  ```
 - `UnicoreApiUrl` (_required_): Specifies how UNICORE can be reached. For JUWELS
 ou can leave this entry as it is.
 - `Resources` (_required_): Specify resources
