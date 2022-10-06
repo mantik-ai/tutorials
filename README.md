@@ -146,7 +146,7 @@ client.submit_run(
   experiment_id=<experiment ID>,
   mlflow_parameters=<mlflow entry point parameters>,
   mlproject_path="<path to mlproject directory>",
-  backend_config_path="<path to backend configuration file relative to mlproject path>",
+  backend_config="<path to backend configuration file relative to mlproject path>",
 )
 ```
 
