@@ -1,13 +1,11 @@
 # User guide
 
-
 ## Tracking to the remote server
 
 The mantik platform offers the full capabilities of
 [mlflow](https://mlflow.org). Tracking results are stored and accessible
 remotely so that you can work from any machine. The tracking server is secured
 by username and password, see also the [security section](#security).
-
 
 A tutorial on the tracking mechanisms can be found
 [here](tracking/README.md).
@@ -97,7 +95,48 @@ response = client.submit_run(
 
 The arguments to the `submit_run` method are equivalent to those of the CLI command.
 
-## mlproject setup
+### Getting application logs
+
+Once a job was submitted via the Compute Backend and is running, you can access the job logs.
+
+The Compute Backend returns a `job_id`, which is a unique ID assigned by UNICORE.
+You can use this ID to fetch the logs:
+
+- Python:
+  
+  ```python
+  from mantik.unciore import logs
+  
+  application_logs = logs.get_application_log_from_config(
+      backend_config="<path to config JSON/YAML relative to mlproject_path>",
+      mlproject_path=pathlib.Path("path/to/mlflow/project"),
+      job_id="<job ID>",
+  ```
+
+  Alternatively, you can use `logs.get_application_logs_from_api_url`, which requires the UNICORE API URL and the job ID:
+
+  ```python
+  application_logs = logs.get_application_logs_from_api_url(
+      api_url="<UNICORE API URL>",
+      job_id="<job ID>",
+  ```
+
+- CLI:
+
+  ```bash
+  mantik logs <job ID> \
+    --mlproject-path path/to/mlflow/project \
+    --backend-config <path to config JSON/YAML relative to mlproject_path>
+  ```
+
+  Alternatively, you can use the API URL directly:
+
+  ```bash
+  mantik logs <job ID> \
+    --api-url <UNICORE API URL>
+  ```
+
+## mlproject Setup
 
 The `mantik.ComputeBackendClient` expects a certain structure of you machine
 learning projects that mainly follows the conventions for
@@ -120,17 +159,16 @@ only support container-based projects.
 
 The two possibilities to configure container-based projects with mantik are:
 
- - build a Docker image locally and reference it in the
+- build a Docker image locally and reference it in the
 [mlflow Docker container environment](https://www.mlflow.org/docs/latest/projects.html#project-docker-container-environments),
 or
- - directly build a singularity/apptainer image and reference it in the
-[backend configuration](#backend-configuration).
+- directly build a singularity/apptainer image and reference it in the
+  [backend configuration](#backend-configuration).
 
 Currently, you need an Apptainer image locally that is send via the compute
 backend to HPC instances in order to run your code in it.
 For installation instructions, see
 [the apptainer documentation](https://apptainer.org/docs/admin/main/installation.html).
-
 
 #### Docker
 
@@ -157,30 +195,64 @@ resources that are allocated for the job.
 
 The config entries are:
 
-- `SingularityImage` (_required_): Defines which singularity image is used to run the project in.
-  - `Path` (_required_): Path to the Singularity image file.
-  - `Type` (_optional_, default is `local`): Whether the image is stored locally or remotely.
-    - `local`: Local path to the image file, either relative or absolute.
-      If the given path is relative, it is assumed to be relative to `mlproject` directory.
-    - `remote`: Absolute path to the image file on the remote system.
-  
-  Local image:
-
-  ```yaml
-  SingularityImage:
-    Path: image.sif
-    Type: local
-  ```
-
-  Remote image:
-
-  ```yaml
-  SingularityImage:
-    Path: /path/on/remote/system/image.sif
-    Type: remote
-  ```
 - `UnicoreApiUrl` (_required_): Specifies how UNICORE can be reached. For JUWELS
 ou can leave this entry as it is.
+- `Environment` (_required_): Anything related to the execution environment of the MLflow project.
+  Here, either `Singularity` _or_ `Python` is required.
+  - `Singularity` (_required_ if `Python` not given): Defines which singularity image is used to run the project in.
+    - `Path` (_required_): Path to the Singularity image file.
+    - `Type` (_optional_, default is `local`): Whether the image is stored locally or remotely.
+      - `local`: Local path to the image file, either relative or absolute.
+        If the given path is relative, it is assumed to be relative to `mlproject` directory.
+      - `remote`: Absolute path to the image file on the remote system.
+  
+    Local image:
+
+    ```yaml
+    Singularity:
+      Path: image.sif
+      Type: local
+    ```
+
+    Remote image:
+
+    ```yaml
+    Singularity:
+      Path: /path/on/remote/system/image.sif
+      Type: remote
+    ```
+
+  - `Python` (_required_ if `Singularity` not given): Path to the virtual environment to load before executing the project.
+
+    ```yaml
+    Python: /path/to/venv
+    ```
+
+    ```yaml
+    Python:
+      Path: /path/to/venv
+    ```
+
+    _Notes:_
+    - If the venv is located on the remote system, the given path must be absolute.
+    - If you put a venv in the MLflow project directory, the path must be relative.
+
+  - `Modules` (_optional_): List of modules to load before executing the project.
+
+    ```yaml
+    Modules:
+      - Python/3.9.6
+      - PyTorch/1.8.1-Python-3.8.5
+    ```
+
+  - `Variables` (_optional_): Pass environment variables as key, value pairs that will be available at runtime.
+  
+    ```yaml
+    Environment:
+      TEST_ENV_VAR: test value
+      ANOTHER_VAR: another value
+    ```
+
 - `Resources` (_required_): Specify resources
 see [here](https://sourceforge.net/p/unicore/wiki/Job_Description/)).
 his is specific to the SLURM scheduler.
@@ -207,14 +279,6 @@ his is specific to the SLURM scheduler.
   - `Reservation` (_optional_): Batch system reservation ID
   - `NodeConstraints` (_optional_): Batch system node constraints
   - `QoS` (_optional_): Batch system QoS
-- `Environment` (_optional_): Pass environment variables as key, value pairs that will be available at runtime.
-  
-  ```yaml
-  Environment:
-    TEST_ENV_VAR: test value
-    ANOTHER_VAR: another value
-  ```
-
 - `Exclude` (_optional_): List of file names, directories, or patterns to exclude from uploading to the Compute Backend Service. E.g.
 
   ```yaml
@@ -294,13 +358,13 @@ export MANTIK_PASSWORD=<password>
 Users can be created by platform administrators. Upon first sign-in, a password
 reset is enforced. Each password must contain
 
- - at least eight characters,
- - at least one number,
- - at least one special character,
- - at least one lowercase letter, and
- - at least one uppercase letter.
+- at least eight characters,
+- at least one number,
+- at least one special character,
+- at least one lowercase letter, and
+- at least one uppercase letter.
 
-### Tracking 
+### Tracking
 
 For `MLFLOW_TRACKING_URI` you can simply provide the base-url of the mantik
 platform, e.g.
@@ -308,6 +372,7 @@ platform, e.g.
 ```bash
 export MLFLOW_TRACKING_URI=https://cloud.mantik.ai
 ```
+
 The application code is able to construct the actual API URL from this.
 
 ### Access to a compute project
@@ -347,4 +412,3 @@ as HTTP form fields, which are automatically encrypted with SSL as well.
 
 For internal security in the cloud we use AWS IAM user management and enforce
 the principle of least privilege.
-

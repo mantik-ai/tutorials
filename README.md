@@ -150,6 +150,21 @@ client.submit_run(
 )
 ```
 
+### Getting Application Logs
+
+The Compute Backend returns a `job_id`, which is a unique job ID assigned by UNICORE.
+This ID can be used to fetch the application logs:
+
+```python
+from mantik.unciore import logs
+
+application_logs = logs.get_application_log_from_config(
+    backend_config="<path to config JSON/YAML relative to mlproject_path>
+    mlproject_path=pathlib.Path(")
+    id: str,
+
+```
+
 ## Accessing tracked experiments
 
 Experiments can be viewed in the mlflow UI. Currently, the UI is the landing
