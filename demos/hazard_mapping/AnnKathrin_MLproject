@@ -1,0 +1,9 @@
+name: annkathrin_mlproject
+
+docker_env:
+	image: annkathrin_image:latest
+
+entry_points:
+  main:
+    parameters:
+    command: "python train.py"	
