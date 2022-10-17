@@ -88,7 +88,7 @@ mlproject. For more information
 information [see here](https://www.mlflow.org/docs/latest/projects.html#running-projects).
 
 The response contains experiment and run id, so that you can find your runs
-easily in the UI. 
+easily in the UI.
 
 ## mlproject setup
 
