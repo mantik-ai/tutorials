@@ -55,7 +55,8 @@ standard mlflow tracking methods.
 Experiments can be referenced by ID or name. We recommend to create experiments
 in the UI and then use IDs to refer to the experiment. With standard mlflow
 usage, you can set the `MLFLOW_EXPERIMENT_ID` environment variable to track
-current runs to the specified experiment.
+current runs to the specified experiment. Experiment IDs are integers that can be 
+obtained from the user interface.
 
 When using the compute backend service, the `experiment_id` is a required
 argument in the `mantik.ComputeBackendClient.submit_run` method.
