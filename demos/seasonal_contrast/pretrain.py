@@ -18,7 +18,9 @@ from seasonal_contrast.models.moco2_module import MocoV2
 from torch.utils.data import DataLoader
 
 import mlflow
+import mantik
 
+mantik.init_tracking()
 
 def get_experiment_name(hparams):
     data_name = os.path.basename(hparams.data_dir)
@@ -78,12 +80,6 @@ if __name__ == '__main__':
         raise ValueError()
 
     model = MocoV2(**vars(args), emb_spaces=datamodule.num_keys)
-
-    # if args.debug:
-    #     logger = False
-    #     checkpoint_callback = False
-    # else:
-    #     checkpoint_callback = ModelCheckpoint(filename='{epoch}')
    
     with mlflow.start_run():
         mlflow.autolog()
@@ -91,11 +87,9 @@ if __name__ == '__main__':
 
         trainer = Trainer.from_argparse_args(
             args,
-            #checkpoint_callback=checkpoint_callback,
-            callbacks=[scheduler],#online_evaluator],
+            callbacks=[scheduler],
             max_epochs=args.max_epochs,
             weights_summary='full',
-            #plugins=[SLURMEnvironment()],
         )
 
         trainer.fit(model,datamodule=datamodule)
