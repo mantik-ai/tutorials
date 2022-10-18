@@ -40,6 +40,10 @@ singularity build mlproject/wine-quality-executor.sif mlproject/recipe.def
  - Building with Singularity might require sudo.
  - If you have apptainer installed, you can just replace `singularity` with
 `apptainer`.
+ - We also include a Dockerfile for completeness' sake. Only Dockerfile *or* Apptainer
+recipe is needed to build the image. We include both because Apptainer images can be
+built from Docker images, see 
+[the containers tutorial](../../instructions/containers/README.md).
 
 ## Setup the environment
 
