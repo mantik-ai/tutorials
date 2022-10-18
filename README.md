@@ -56,7 +56,7 @@ platform in the form `https://<host>.<domain>`, e.g.
 It's important that the URI has to be the root path!
 
 For more information on the required environment variables see
-[the user guide](instructions/user_guide.md#required-passwords-and-environment-variables).
+[the user guide](instructions/user_guide.md#required-credentials-and-environment-variables).
 
 To allow tracking to mantik, you require an access token to be sent with every request
 to the API. This is handled by mlflow by setting the `MLFLOW_TRACKING_TOKEN` environment
@@ -127,7 +127,7 @@ For an example project that can be run on JUWELS with mantik, check out the
 demo directory.
 For more information on how to setup such a project, see
 
-Set the [required environment variables](instructions/user_guide.md#required-passwords-and-environment-variables):
+Set the [required environment variables](instructions/user_guide.md#required-credentials-and-environment-variables):
 
 ```commandline
 export MANTIK_UNICORE_USERNAME=<unicore user>

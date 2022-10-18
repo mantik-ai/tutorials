@@ -13,8 +13,8 @@ The term `MLproject` is commonly used in three slightly different meanings:
 Most of the time it is evident from context what is meant.
 ## MLproject specification
 
-The file 
-[`MLproject`](https://www.mlflow.org/docs/latest/projects.html#mlproject-file) 
+The file
+[`MLproject`](https://www.mlflow.org/docs/latest/projects.html#mlproject-file)
 is required to configure your machine learning project to run with mlflow.
 
 The following entries are required:
@@ -23,8 +23,8 @@ The following entries are required:
  - `docker_env`: Docker image to run the project in
  - `entry_points`: Entry points for the project
 
-Let's say you want to name your project `my-project`, run it in the Docker 
-image `my-docker-image` and configure one entrypoint called `main`. The 
+Let's say you want to name your project `my-project`, run it in the Docker
+image `my-docker-image` and configure one entrypoint called `main`. The
 corresponding `MLproject` file then reads:
 
 ```yaml
@@ -42,10 +42,11 @@ entry_points:
 
 **Notes:**
 
- - We strongly suggest you use the `docker environment`. For alternatives 
+ - We strongly suggest you use the `docker environment`. For alternatives
 [see here](https://www.mlflow.org/docs/latest/projects.html#specifying-an-environment).
- - The `parameters` mapping in `MLproject` is not strictly needed. We include
-it here for the sake of completness, see also the  [runscript section](#runscript).
+ - The `parameters` mapping in `MLproject` is only needed when executing with the CLI.
+We include it here for the sake of completness, see also the
+[runscript section](#runscript).
 
 ## Containers
 
@@ -89,7 +90,7 @@ The backend configuration is one of the
 as proposed by mlflow. Here, all configuration options for UNICORE and the
 scheduler on the compute backend (usually SLURM) are collected.
 
-The format of the configuration file is documented in the 
+The format of the configuration file is documented in the
 [user guide](../user_guide.md#backend-configuration).
 
 ## Extensions to the MLproject structure
