@@ -1,0 +1,10 @@
+name: timo_mlproject
+
+docker_env:
+  image: timo_mlproject:latest
+
+entry_points:
+  main:
+    parameters:
+    command: "python train.py"
+
