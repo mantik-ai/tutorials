@@ -107,7 +107,9 @@ mounted, all files in this directory are transferred alongside the singularity
 image and accessible at runtime.
 
 Make sure not to have unnecessary files in that directory in order not to slow
-down the file upload.
+down the file upload. We recommend not to build data directly into Singularity / 
+Apptainer images and ideally store them directly on the remote system and just reference
+the according path in your code.
 
 
 ### Results
