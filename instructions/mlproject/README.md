@@ -52,7 +52,7 @@ We include it here for the sake of completness, see also the
 
 You must provide the Singularity/Apptainer image in which your project can be
 executed under the name that is specified in the
-[backend config](#backend-config). For information on how to find or build the
+[backend config](#backend-configuration). For information on how to find or build the
 proper image, [see the containers tutorial](../containers/README.md).
 
 ## Runscript
@@ -98,7 +98,7 @@ The format of the configuration file is documented in the
 We extend the [mlflow MLproject](https://www.mlflow.org/docs/latest/projects.html)
 in the following ways:
 
- - We require the [backend configuration](#backend-config) to be present in the
+ - We require the [backend configuration](#backend-configuration) to be present in the
 `mlproject` directory.
  - We require an Apptainer image to be referenced in the backend configuration
 and the image to be present in the `mlproject` directory.

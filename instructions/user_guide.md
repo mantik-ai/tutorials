@@ -26,7 +26,7 @@ client = mantik.ComputeBackendClient(...)
 ```
 
 We recommend that you set all your credentials as
-[environment variables](#required-passwords-and-environment-variables):
+[environment variables](#required-credentials-and-environment-variables):
 
  - `MANTIK_USERNAME`
  - `MANTIK_PASSWORD`
