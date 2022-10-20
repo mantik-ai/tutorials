@@ -1,3 +1,11 @@
+"""
+This script contains code taken from Ankit Patnala's repository: https://gitlab.jsc.fz-juelich.de/patnala1/seasonal-contrast/-/tree/main/
+We are responsible for adding code snippets for enabling model tracking.
+
+Apache License
+
+Copyright (c) 2022, Forschungszentrum Juelich, Ankit Patnala
+""" 
 #Pretraining models 
 import os
 from pathlib import Path

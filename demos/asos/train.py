@@ -1,3 +1,12 @@
+"""
+This script contains code taken from Timo Stomberg's repository: https://gitlab.jsc.fz-juelich.de/kiste/asos/-/tree/main/
+We are responsible for adding code snippets for enabling model tracking.
+
+MIT License
+
+Copyright (c) 2022 KISTE, University of Bonn, Timo Tjaden Stomberg
+""" 
+
 import os
 from pathlib import Path
 import torch.nn as nn
