@@ -4,5 +4,5 @@
   "Queue": "devel",
   "Nodes": 1
   },
-  "SingularityImage": "ankit_mlproject.sif"
+  "SingularityImage": "seasonal_contrast.sif"
 }
