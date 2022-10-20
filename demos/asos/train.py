@@ -85,6 +85,3 @@ if __name__ == '__main__':
         evaluate(trainer)
         
         mlflow.log_model(lr, "lr")
-
-	#fi = utils.load_file_infos(raw=True)
-    #fi.save(os.path.join(trainer.log_dir, 'file_infos.csv'))
