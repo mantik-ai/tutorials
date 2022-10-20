@@ -5,5 +5,6 @@ Through the AI-platform it is possible to manage and track various experiments. 
 
 Related papers: "Exploring Wilderness Using Explainable Machine Learning in Satellite Imagery" (2022) by Timo T. Stomberg, Taylor Stone, Johannes Leonhardt, Immanuel Weber, and Ribana Roscher; https://doi.org/10.48550/arXiv.2203.00379.
 
+Project author: Timo Stomberg</br>
 Original gitlab link: https://gitlab.jsc.fz-juelich.de/kiste/asos/-/tree/main/</br>
 The code of this project is also copied in the following repository which contains a collection of several KI:STE projects: https://gitlab.jsc.fz-juelich.de/kreshpa1/ai-platform-demos.git.
