@@ -1,7 +1,7 @@
-name: timo_mlproject
+name: asos_mlproject
 
 docker_env:
-  image: timo_mlproject:latest
+  image: asos_mlproject:latest
 
 entry_points:
   main:
