@@ -15,7 +15,6 @@ From: python:3.8
   pip install zipfile36
   
   yes | apt-get update
-  yes | apt-get install vim
    
   pip install git+https://gitlab.jsc.fz-juelich.de/kreshpa1/ai-platform-demos.git 
  
