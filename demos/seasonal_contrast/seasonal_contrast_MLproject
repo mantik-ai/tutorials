@@ -1,7 +1,7 @@
-name: ankit_mlproject
+name: seasonal_contrast_mlproject
 
 docker_env:
-  image: ankit_mlproject:latest
+  image: seasonal_contrast_mlproject:latest
 
 entry_points:
   main:
