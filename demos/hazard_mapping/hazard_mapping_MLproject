@@ -1,7 +1,7 @@
-name: hazardmapping_mlproject
+name: hazard_mapping_mlproject
 
 docker_env:
-	image: hazardmapping_image:latest
+	image: hazard_mapping_image:latest
 
 entry_points:
   main:
