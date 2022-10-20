@@ -45,10 +45,7 @@ class prepare_data:
 
         self.features = self.features.drop('xcoord', axis = 1)
         self.features = self.features.drop('ycoord', axis = 1)
-        
-        #for dataset in settings.not_included_data_pred:
-        #    self.features= self.features.drop(dataset, axis = 1)
-            
+               
         self.features_df = self.features
         self.feature_list = list(self.features.columns)
         features = np.array(self.features)
@@ -124,12 +121,3 @@ if __name__ == "__main__":
         model = RandomForest(settings.model_database_dir)
         model.train(train_features, train_labels)
         prediction = model.predict(train_features)
-        #mlflow.log_param("labels", train_labels)
-        
-
-
-
-
-        	
-        
-        	
