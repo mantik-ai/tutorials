@@ -5,16 +5,14 @@ From: python:3.8
   pip install mantik==0.1.1
  
   yes | apt-get update
-  yes | apt-get install vim 
 
   yes | apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
 
-  yes | apt update
-  yes | apt upgrade
+  yes | apt-get update
+  yes | apt-get upgrade
 
   yes | apt-get install software-properties-common
   add-apt-repository ppa:ubuntugis/ppa
-  ## yes | apt-get update
 
   yes | apt-get install gdal-bin
   yes | apt-get install libgdal-dev
@@ -24,7 +22,6 @@ From: python:3.8
 
   yes | pip install GDAL==3.2.2
   pip install earthengine-api
-  ##yes | pip install git+https://gitlab.jsc.fz-juelich.de/kiste/asos@main
   yes | pip install git+https://gitlab.jsc.fz-juelich.de/kreshpa1/ai-platform-demos.git
 
 %environment
