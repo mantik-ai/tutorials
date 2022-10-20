@@ -17,7 +17,7 @@ logged_model = "runs:/<mlflow_run_id>/<path_to_model>"
 loaded_model = mlflow.pytorch.load_model(logged_model)
 ```
 
-####The model can also be loaded through the MLflow model registry. The function you will use will be the same, but the path you will provide will be different. To load a model from the model registry, the path will be “models:/<model_name>/<version>” where model_name is the name of your model in the model registry and version is the version of the model in the model registry. 
+The model can also be loaded through the MLflow model registry if you have already registered it there. In case the model is not registered, you can add it to the model registry using the MLflow tracking UI. When viewing the model artifact, you should press the "Register Model" button that appears in the upper left. After this step, you can continue to load the model using the same function as previously, but the path you will provide will be different. To load a model from the model registry, the path will be ```“models:/<model_name>/<version>”``` where ```model_name``` is the name of your model in the model registry and ```version``` is the version of the model in the model registry. 
 
 
 ## Prediction
