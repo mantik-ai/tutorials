@@ -22,7 +22,7 @@ loaded_model = mlflow.pytorch.load_model(logged_model)
 
 ## Prediction
   
-After loading the model, you can simply use it to predict by feeding in the data.
+After loading the model, you can simply use it for prediction by feeding in the data.
   
 ```python
 prediction = loaded_model(input_data)
