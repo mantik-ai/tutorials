@@ -1,21 +1,12 @@
 Bootstrap: docker
 From: python:3.8
 
-%post
-  pip install mantik==0.1.1
-  pip install torch==1.7.1
-  pip install torchvision==0.8.2
-  pip install pytorch-lightning==1.1.8
-  pip install pytorch-lightning-bolts==0.3.0
-  pip install scikit-learn
-  pip install scikit-image
-  pip install rasterio
-  pip install lmdb
-  pip install pyshp
-  pip install shapely
-  pip install torchmetrics 
-  pip install h5py 
+%files
+  ./requirements.txt /opt
 
+%post
+  pip install -r /opt/requirements.txt 
   pip install git+https://gitlab.jsc.fz-juelich.de/kreshpa1/ai-platform-demos.git
+  
 %environment
   GIT_PYTHON_REFRESH=quiet 
