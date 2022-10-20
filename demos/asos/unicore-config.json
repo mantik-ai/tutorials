@@ -4,5 +4,5 @@
   "Queue": "devel",
   "Nodes": 1
   },
-  "DockerImage": "timoenv"
+  "DockerImage": "asos"
 }
