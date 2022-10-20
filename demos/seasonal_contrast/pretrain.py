@@ -9,12 +9,10 @@ warnings.simplefilter('ignore', UserWarning)
 from pytorch_lightning import Trainer
 from pytorch_lightning.loggers import TensorBoardLogger
 from pytorch_lightning.callbacks import ModelCheckpoint
-#from pytorch_lightning.plugins.environments import SLURMEnvironment
 from pl_bolts.models.self_supervised.moco.callbacks import MocoLRScheduler
 from pl_bolts.models.self_supervised.moco.transforms import Moco2TrainImagenetTransforms
 from seasonal_contrast.datasets.seco_datamodule import SeasonalContrastBasicDataModule, SeasonalContrastTemporalDataModule, SeasonalContrastMultiAugDataModule
 from seasonal_contrast.models.moco2_module import MocoV2
-#from seasonal_contrast.models.ssl_online import SSLOnlineEvaluator
 from torch.utils.data import DataLoader
 
 import mlflow
@@ -28,7 +26,6 @@ def get_experiment_name(hparams):
     return name
 
 if __name__ == '__main__':
-	#pl.seed_everything(42)
 
     parser = ArgumentParser()
     parser = Trainer.add_argparse_args(parser)
@@ -93,6 +90,3 @@ if __name__ == '__main__':
         )
 
         trainer.fit(model,datamodule=datamodule)
-
-
-
