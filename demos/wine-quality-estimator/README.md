@@ -23,7 +23,7 @@ singularity installed, ask an admin to provide you with the image.
 
 **Note 2:** In this demo we use singularity images since it was tested with
 `singularity-ce version 3.8.0`. However, it should also work for newer versions
-and `apptainer` images. 
+and `apptainer` images.
 
 ## Build the required Singularity image
 
@@ -36,10 +36,14 @@ Build the image as follows:
 singularity build mlproject/wine-quality-executor.sif mlproject/recipe.def
 ```
 
-**Note:** 
+**Note:**
  - Building with Singularity might require sudo.
  - If you have apptainer installed, you can just replace `singularity` with
 `apptainer`.
+ - We also include a Dockerfile for completeness' sake. Only Dockerfile *or* Apptainer
+recipe is needed to build the image. We include both because Apptainer images can be
+built from Docker images, see 
+[the containers tutorial](../../instructions/containers/README.md).
 
 ## Setup the environment
 
@@ -70,6 +74,11 @@ For access to the mantik platform, you will need to supply credentials via:
 export MANTIK_USERNAME=<user>
 export MANTIK_PASSWORD=<password>
 ```
+
+The file `environment.sh` can be used to set all the environment variables:
+ - Replace the placeholders for the values by the actual values.
+ - Run `source environment.sh` in a shell before calling the python script
+from the same shell.
 
 ### The backend configuration file
 
@@ -102,7 +111,10 @@ mounted, all files in this directory are transferred alongside the singularity
 image and accessible at runtime.
 
 Make sure not to have unnecessary files in that directory in order not to slow
-down the file upload.
+down the file upload. We recommend not to build data into Singularity / 
+Apptainer images and ideally store them directly on the remote system and just reference
+the according path in your code or make the data path a parameter in your MLproject
+definition.
 
 
 ### Results
