@@ -10,7 +10,7 @@ To log a model that belongs to PyTorch framework to the Mantikflow tracking serv
 
 ## Loading models
  
-You can load a previously logged model for inference in any script or notebook. To load the model you can use the built-in utilities of the same framework that you used for saving the model. Moreover, you can load the model in two ways where the first way is loading the model using an MLflow run and the second way is using the model registry. In the case of using a model run, the following path should be provided to the load_model function: ```"runs:/<mlflow_run_id>/<path_to_model>"```, where ```mlflow_run_id``` is the run id under which your model was saved and path_to_model is the relative path to the model within the run’s artifacts directory. You can find out the RUN ID, by clicking over the logged model in Mantikflow's UI.  
+You can load a previously logged model for inference in any script or notebook. To load the model you can use the built-in utilities of the same framework that you used for saving the model. Moreover, you can load the model in two ways where the first way is loading the model using an MLflow run and the second way is using the model registry. In the case of using a model run, the following path should be provided to the ```load_model``` function: ```"runs:/<mlflow_run_id>/<path_to_model>"```, where ```mlflow_run_id``` is the run id under which your model was saved and ```path_to_model``` is the relative path to the model within the run’s artifacts directory. You can find out the RUN ID, by clicking over the logged model in Mantikflow's UI.  
 
 ```python
 logged_model = "runs:/<mlflow_run_id>/<path_to_model>"
