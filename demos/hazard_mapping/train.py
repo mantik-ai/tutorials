@@ -1,6 +1,6 @@
 """
 This script contains code taken from Ann-Kathrin Edrich's repository: 
-We are responsible only for adding code snippets for enabling model tracking.
+We are responsible for making changes and adding code snippets for enabling model tracking. 
 """ 
 import numpy as np
 import pandas as pd

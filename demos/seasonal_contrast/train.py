@@ -1,3 +1,8 @@
+"""
+This script contains code taken from Ankit Patnala's repository: https://gitlab.jsc.fz-juelich.de/patnala1/seasonal-contrast/-/tree/main/
+We are responsible for making changes and adding code snippets for enabling model tracking.
+"""
+
 from pathlib import Path
 from copy import deepcopy
 from argparse import ArgumentParser
@@ -11,17 +16,17 @@ import pytorch_lightning as pl
 from pytorch_lightning import Trainer
 from pytorch_lightning.loggers import TensorBoardLogger
 from pytorch_lightning.callbacks import ModelCheckpoint
-#from pytorch_lightning.plugins.environments import SLURMEnvironment
 
 from seasonal_contrast.datasets.bigearthnet_datamodule import BigearthnetDataModule
 from seasonal_contrast.models.moco2_module import MocoV2
 from seasonal_contrast.models.ssl_finetuner import SSLFineTuner
 
 import mlflow
+import mantik
 
+mantik.init_tracking()
 
 if __name__ == '__main__':
-	pl.seed_everything(42)
 
     parser = ArgumentParser()
     parser = Trainer.add_argparse_args(parser)
@@ -41,7 +46,7 @@ if __name__ == '__main__':
 
 
     datamodule = BigearthnetDataModule(
-        data_dir=args.data_dir, #have to find a way how to link these data - not inside the platform
+        data_dir=args.data_dir, 
         lmdb=args.lmdb,
         batch_size=args.batch_size,
         num_workers=args.num_workers,
@@ -84,26 +89,12 @@ if __name__ == '__main__':
     model.example_input_array = ( torch.zeros((1, 4, 128, 128))
                                   if args.is_4_channels
                                   else torch.zeros(1,3,128,128))
- 
-
     with mlflow.start_run():
     	mlflow.autolog()
 
     	trainer = Trainer.from_argparse_args(
         args,
-        #checkpoint_callback=checkpoint_callback,
         weights_summary='full',
         check_val_every_n_epoch=10,
-        #plugins=[SLURMEnvironment()],
     	)
   	  	trainer.fit(model, datamodule=datamodule)
-
-
-
-
-
-
-
-
-
-

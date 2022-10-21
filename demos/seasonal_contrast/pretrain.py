@@ -1,12 +1,8 @@
 """
 This script contains code taken from Ankit Patnala's repository: https://gitlab.jsc.fz-juelich.de/patnala1/seasonal-contrast/-/tree/main/
-We are responsible for adding code snippets for enabling model tracking.
-
-Apache License
-
-Copyright (c) 2022, Forschungszentrum Juelich, Ankit Patnala
+We are responsible for making changes and adding code snippets for enabling model tracking. 
 """ 
-#Pretraining models 
+
 import os
 from pathlib import Path
 from copy import deepcopy
@@ -44,9 +40,6 @@ if __name__ == '__main__':
     parser.add_argument('--data_mode', type=str, choices=['moco', 'moco_tp', 'seco'], default='seco')
     parser.add_argument('--max_epochs', type=int, default=200)
     parser.add_argument('--schedule', type=int, nargs='*', default=[120, 160])
-    #parser.add_argument('--online_data_dir', type=str)
-    #parser.add_argument('--online_max_epochs', type=int, default=25)
-    #parser.add_argument('--online_val_every_n_epoch', type=int, default=125)
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--use_ddp', action='store_true')
     parser.add_argument('--is_4_channels',action='store_true')
