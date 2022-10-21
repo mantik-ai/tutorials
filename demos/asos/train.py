@@ -1,6 +1,6 @@
 """
 This script contains code taken from Timo Stomberg's repository: https://gitlab.jsc.fz-juelich.de/kiste/asos/-/tree/main/
-We are responsible for adding code snippets for enabling model tracking.
+We are responsible only for adding code snippets for enabling model tracking.
 
 MIT License
 

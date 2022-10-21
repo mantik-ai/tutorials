@@ -1,6 +1,6 @@
 """
 This script contains code taken from Ann-Kathrin Edrich's repository: 
-We are responsible for adding code snippets for enabling model tracking.
+We are responsible only for adding code snippets for enabling model tracking.
 """ 
 import numpy as np
 import pandas as pd
@@ -124,4 +124,3 @@ if __name__ == "__main__":
         mlflow.autolog()
         model = RandomForest(settings.model_database_dir)
         model.train(train_features, train_labels)
-        prediction = model.predict(train_features)

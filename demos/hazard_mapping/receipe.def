@@ -6,8 +6,6 @@ From: python:3.8
 
 %post
   pip install -r /opt/requirements.txt 
-  yes | apt-get update
-  
   pip install git+https://gitlab.jsc.fz-juelich.de/kreshpa1/ai-platform-demos.git 
  
 %environment
