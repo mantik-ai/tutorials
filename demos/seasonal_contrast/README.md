@@ -4,5 +4,7 @@ This project is focused on atmospheric transformation used to generate views for
 
 **Project author:** Ankit Patnala<br/>
 **Related papers:** Atmospheric Correction for Contrastive Self-supervised Learning of Multi-spectral Images (planned to be submit this year: 2022)<br/>
-**Gitlab link of the repository:** https://gitlab.jsc.fz-juelich.de/patnala1/seasonal-contrast/-/tree/main<br/>
-The code of this project is also copied in the following repository which contains a collection of several KI:STE projects: https://gitlab.jsc.fz-juelich.de/kreshpa1/ai-platform-demos.git.
+**Gitlab link of the repository:** https://gitlab.jsc.fz-juelich.de/patnala1/seasonal-contrast/-/tree/main
+
+The code of this project is also copied in the following repository which contains a collection of several KI:STE projects: https://gitlab.jsc.fz-juelich.de/kreshpa1/ai-platform-demos.git.<br/>
+_Note_: The user needs a GitLab account in the GitLab instance of JSC in order to download all the necessary packages for creating the container and running the code.
