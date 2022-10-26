@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 from annkathrin.hazard_mapping.modules import generate_ncfile
 from annkathrin.hazard_mapping import settings
+#import settings
 
 import mlflow
 import mantik
@@ -26,7 +27,6 @@ class prepare_data:
     def __init__(self):
 
         self.input_path = settings.path_input
-        
         self.mask_path = settings.path_mask
         self.train_features = None
         self.test_features = None

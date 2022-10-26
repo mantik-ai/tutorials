@@ -7,9 +7,9 @@ import os
 from pathlib import Path
 import torch.nn as nn
 
-from projects.asos import config, modules, utils
+from timo.projects.asos import config, modules, utils
 from tlib import ttorch, tlearn
-import projects.utils
+import timo.projects.utils
 
 import mlflow
 import mantik

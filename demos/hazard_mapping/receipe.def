@@ -2,11 +2,11 @@ Bootstrap: docker
 From: python:3.8
 
 %files
-  ./requirements.txt /opt
+  . /opt
 
 %post
+  pip install git+https://gitlab.jsc.fz-juelich.de/kreshpa1/ai-platform-demos.git
   pip install -r /opt/requirements.txt 
-  pip install git+https://gitlab.jsc.fz-juelich.de/kreshpa1/ai-platform-demos.git 
  
 %environment
   GIT_PYTHON_REFRESH=quiet
