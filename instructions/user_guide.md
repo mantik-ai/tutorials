@@ -43,98 +43,91 @@ project you want to use. We basically follow
 all further conventions are described in the
 [MLproject section](#mlproject-setup).
 
-### CLI
+### Submitting runs
 
-Set your credentials as environment variables and use:
+- CLI:
 
-```bash
-mantik run <mlproject path> \
-  --experimend-id <MLflow experiment ID> \
-  --backend-config <path to backend configuration file relative to mlproject path> \
-  --entry-point <entry point name> \
-  -P <key>=<value> \
-  -P <key>=<value>
-
-```
-
-The arguments to the `run` command are specified as follows:
-
-- `mlproject path`: Path to MLproject. For more information
-[see MLprojects section](#mlproject-setup).
-- `experiment-id`: Experiment ID under which to store the run and access it
-in the UI.
-- `backend-config`: Path to the backend configuration file, relative to
-`mlproject_path`. For more information on the backend configuration see the
-[backend configuration section](#backend-configuration). 
-- `entry-point`: Entry point to run for the given MLproject. For more
-information [see here](https://www.mlflow.org/docs/latest/projects.html#running-projects).
-- `P`: Mapping of parameters and values handed over to
-mlproject. For more information
-[see here](https://www.mlflow.org/docs/latest/projects.html#specifying-parameters).
-
-The response contains experiment and run id, so that you can find your runs
-easily in the UI.
-
-### Python
-
-Set your credentials as environment variables and use:
-
-```python
-import mantik
-
-client = mantik.ComputeBackendClient.from_env()
-
-response = client.submit_run(
-    experiment_id=<experiment id>,
-    mlproject_path="<path to mlproject directory>",
-    mlflow_parameters ={<key: value pairs for mlflow parameters and values>},
-    backend_config="<path to backend configuration file relative to mlproject_path>",
-    entry_point="<entry point of the mlproject>",
-)
-```
-
-The arguments to the `submit_run` method are equivalent to those of the CLI command.
-
-### Getting application logs
-
-Once a job was submitted via the Compute Backend and is running, you can access the job logs.
-
-The Compute Backend returns a `job_id`, which is a unique ID assigned by UNICORE.
-You can use this ID to fetch the logs:
+  Set your credentials as environment variables and use:
+  
+  ```bash
+  mantik runs submit <mlproject path> \
+    --experimend-id <MLflow experiment ID> \
+    --backend-config <path to backend configuration file relative to mlproject path> \
+    --entry-point <entry point name> \
+    -P <key>=<value> \
+    -P <key>=<value>
+  
+  ```
+  
+  The arguments to the `runs submit` command are specified as follows:
+  
+  - `mlproject path`: Path to MLproject. For more information
+  [see MLprojects section](#mlproject-setup).
+  - `experiment-id`: Experiment ID under which to store the run and access it
+  in the UI.
+  - `backend-config`: Path to the backend configuration file, relative to
+  `mlproject_path`. For more information on the backend configuration see the
+  [backend configuration section](#backend-configuration). 
+  - `entry-point`: Entry point to run for the given MLproject. For more
+  information [see here](https://www.mlflow.org/docs/latest/projects.html#running-projects).
+  - `P`: Mapping of parameters and values handed over to
+  mlproject. For more information
+  [see here](https://www.mlflow.org/docs/latest/projects.html#specifying-parameters).
+  
+  The response contains experiment, run, and job ID (UNICORE Job ID), so that you can find your runs
+  easily in the UI and interact with them via the Mantik API.
 
 - Python:
+  Set your credentials as environment variables and use:
   
   ```python
-  from mantik.unciore import logs
+  import mantik
+
+  client = mantik.ComputeBackendClient.from_env()
   
-  application_logs = logs.get_application_log_from_config(
-      backend_config="<path to config JSON/YAML relative to mlproject_path>",
-      mlproject_path=pathlib.Path("path/to/mlflow/project"),
-      job_id="<job ID>",
+  response = client.submit_run(
+      experiment_id=<experiment id>,
+      mlproject_path="<path to mlproject directory>",
+      mlflow_parameters ={<key: value pairs for mlflow parameters and values>},
+      backend_config="<path to backend configuration file relative to mlproject_path>",
+      entry_point="<entry point of the mlproject>",
+  )
   ```
+  
+  The arguments to the `submit_run` method are equivalent to those of the CLI command.
 
-  Alternatively, you can use `logs.get_application_logs_from_api_url`, which requires the UNICORE API URL and the job ID:
+### Interacting with submitted runs
 
-  ```python
-  application_logs = logs.get_application_logs_from_api_url(
-      api_url="<UNICORE API URL>",
-      job_id="<job ID>",
-  ```
+Once a run was submitted, you can interact with it via CLI and Python API.
 
 - CLI:
 
   ```bash
-  mantik logs <job ID> \
-    --mlproject-path path/to/mlflow/project \
-    --backend-config <path to config JSON/YAML relative to mlproject_path>
+  mantik runs <command> <job ID> --backend-config <path to backend config JSON/YAML>
   ```
 
-  Alternatively, you can use the API URL directly:
+  Alternatively, you can use `--api-url`, which requires the UNICORE API URL.
 
-  ```bash
-  mantik logs <job ID> \
-    --api-url <UNICORE API URL>
+- Python:
+  
+  ```python
+  import pathlib
+  from mantik.unciore.client import Client
+  
+  config = pathlib.Path("<path to backend config JSON/YAML>")
+  client = Client.from_config(config)
+  job = client.get_job("<job ID>")
   ```
+
+  Alternatively, you can use `Client.from_api_url()`, which requires the UNICORE API URL.
+
+The following commands are available:
+
+- `mantik runs list`: Shows a detailed list of all submitted runs. (`mantik.unicore.client.Client.get_jobs()`)
+- `mantik runs status`: Shows a run's current status (`mantik.unicore.job.Job.status`)
+- `mantik runs info`: Shows detailed information about a run. (`mantik.unicore.job.Job.properties`)
+- `mantik runs logs`: Prints the application logs. (`mantik.unicore.job.Job.application_logs`)
+- `mantik runs download`: Allows to download a single file or an entire folder from the run's working directory. (`mantik.unicore.job.Job.download()`)
 
 ## mlproject Setup
 
@@ -303,9 +296,12 @@ and [here](https://fzj-unic.fz-juelich.de:9112/FZJ/rest/registries/default_regis
 
   ```yaml
   UnicoreApiUrl: https://zam2125.zam.kfa-juelich.de:9112/JUWELS/rest/core
-  SingularityImage: image.sif
   Environment:
-    TEST_ENV_VAR: variable value
+    Singularity:
+      Path: image.sif
+      Type: local
+    Variables:
+      TEST_ENV_VAR: variable value
   Resources:
     Queue: batch
     Nodes: 2
@@ -318,15 +314,17 @@ and [here](https://fzj-unic.fz-juelich.de:9112/FZJ/rest/registries/default_regis
   ```JSON
   {
     "UnicoreApiUrl": "https://zam2125.zam.kfa-juelich.de:9112/JUWELS/rest/core",
-    "SingularityImage": "image.sif",
     "Environment": {
-      "TEST_ENV_VAR": "variable value"
+      "Python": "/path/to/venv",
+      "Variables": {
+        "TEST_ENV_VAR": "variable value"
+      }
     },
     "Resources": {
       "Queue": "batch",
       "Nodes": 2
     },
-    "Exclude": ["another-image.sif"]
+    "Exclude": ["*.sif"]
   }
   ```
 

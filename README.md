@@ -126,7 +126,7 @@ To run the example, you can either use the CLI or Python.
 ### CLI
 
 ```bash
-mantik run <path to mlproject directory> \
+mantik runs submit <path to mlproject directory> \
   --experimend-id <MLflow experiment ID> \
   --entry-point <entry point name> \
   --backend-config <path to backend configuration file relative to mlproject path>
@@ -150,20 +150,10 @@ client.submit_run(
 )
 ```
 
-### Getting Application Logs
 
 The Compute Backend returns a `job_id`, which is a unique job ID assigned by UNICORE.
-This ID can be used to fetch the application logs:
-
-```python
-from mantik.unciore import logs
-
-application_logs = logs.get_application_log_from_config(
-    backend_config="<path to config JSON/YAML relative to mlproject_path>
-    mlproject_path=pathlib.Path(")
-    id: str,
-
-```
+This ID can be used to interact with the job (e.g. getting its status, downloading files, etc.).
+For more detailed information, see the [the user guide](instructions/user_guide.md)
 
 ## Accessing tracked experiments
 
