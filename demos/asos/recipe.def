@@ -1,0 +1,36 @@
+Bootstrap: docker
+From: python:3.8
+
+%files 
+
+ . /opt 
+
+%post
+  apt-get update && apt-get -y install software-properties-common
+  add-apt-repository ppa:ubuntugis:ppa
+  apt-get update && apt-get upgrade
+
+  apt-get -y install libgl1-mesa-glx \
+    libegl1-mesa \
+    libxrandr2 \
+    libxrandr2 \
+    libxss1 \
+    libxcursor1 \
+    libxcomposite1 \
+    libasound2 \
+    libxi6 \
+    libxtst6 \
+    gdal-bin \
+    libgdal-dev
+
+  export CPLUS_INCLUDE_PATH=/usr/include/gdal
+  export C_INCLUDE_PATH=/usr/include/gdal
+
+  pip install git+https://gitlab.jsc.fz-juelich.de/kreshpa1/ai-platform-demos.git \
+    mantik==0.1.1 \
+    GDAL==3.2.2 \
+    earthengine-api \
+    git+https://gitlab.jsc.fz-juelich.de/kiste/asos@main
+
+%environment
+  GIT_PYTHON_REFRESH=quiet

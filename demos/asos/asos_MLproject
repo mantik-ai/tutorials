@@ -1,0 +1,10 @@
+name: asos_mlproject
+
+docker_env:
+  image: asos_mlproject:latest
+
+entry_points:
+  main:
+    parameters:
+    command: "python train.py"
+

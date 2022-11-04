@@ -26,7 +26,7 @@ client = mantik.ComputeBackendClient(...)
 ```
 
 We recommend that you set all your credentials as
-[environment variables](#required-passwords-and-environment-variables):
+[environment variables](#required-credentials-and-environment-variables):
 
  - `MANTIK_USERNAME`
  - `MANTIK_PASSWORD`
@@ -88,7 +88,7 @@ mlproject. For more information
 information [see here](https://www.mlflow.org/docs/latest/projects.html#running-projects).
 
 The response contains experiment and run id, so that you can find your runs
-easily in the UI. 
+easily in the UI.
 
 ## mlproject setup
 
