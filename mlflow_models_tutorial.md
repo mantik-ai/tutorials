@@ -1,7 +1,8 @@
 # Saving and loading models with MLflow
 
 MLflow introduces a standard format for packaging machine learning models known as 
-MLflow Model. The format defines a convention that lets you save and load a model in 
+[MLflow Model](https://www.mlflow.org/docs/latest/models.html). 
+The format defines a convention that lets you save and load a model in 
 multiple flavors (pytorch, keras, sklearn) that can be interpreted by different 
 downstream platforms. For example, mlflow.sklearn contains `save_model`, `log_model`, 
 and `load_model` functions for scikit-learn models which allow to save and load 
@@ -26,8 +27,8 @@ model registry. In the case of using a model run, the following path should be
 provided to the `load_model` function: `"runs:/<mlflow_run_id>/<path_to_model>"`, 
 where `mlflow_run_id` is the run id under which your model was saved and 
 `path_to_model` is the relative path to the model within the run’s artifacts directory. 
-You can look at the respective run and see the logged model through Mantikflow's UI. 
-There you can also find the RUN ID.  
+You can look at the respective run and see the logged model through the Mantik mlflow
+UI. There you can also find the RUN ID.  
 
 ```python
 logged_model = "runs:/<mlflow_run_id>/<path_to_model>"
