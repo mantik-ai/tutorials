@@ -1,0 +1,9 @@
+name: hazard_mapping_mlproject
+
+docker_env:
+	image: hazard_mapping_image:latest
+
+entry_points:
+  main:
+    parameters:
+    command: "python train.py"	
