@@ -157,4 +157,10 @@ client.submit_run(
 ## Accessing tracked experiments
 
 Experiments can be viewed in the mlflow UI. Currently, the UI is the landing
-page of the [mantik platform](#the-mantik-platform).
+page of the mantik platform.
+
+## Using stored models for inference
+
+Mlflow provides the possibility to retrieve models that have been stored as artifacts
+or registered and use them for inference. In order to get started see
+[the "Saving and loading models with Mlflow" introduction][instructions/inference/mlflow_models_tutorial.md].
