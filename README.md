@@ -163,4 +163,4 @@ page of the mantik platform.
 
 Mlflow provides the possibility to retrieve models that have been stored as artifacts
 or registered and use them for inference. In order to get started see
-[the "Saving and loading models with Mlflow" introduction][instructions/inference/mlflow_models_tutorial.md].
+[the "Saving and loading models with Mlflow" introduction](instructions/inference/mlflow_models_tutorial.md).
