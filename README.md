@@ -8,6 +8,17 @@ platform admins for an account (currently
 [@thomose](https://github.com/thomose) and
 [@faemmi](https://github.com/faemmi)).
 
+## The mantik platform
+
+Mantik offers a web based platform for experiment tracking. It can be reached via
+[cloud.mantik.ai](https://cloud.mantik.ai). Currently registration is disabled.
+Accounts can be requested from the platform administrators
+[@thomose](https://github.com/thomose) and [@faemmi](https://github.com/faemmi).
+
+There is a [free trial instance](https://trial.cloud.mantik.ai).
+Be aware that no data on the trial instance is guaranteed to be preserved.
+Experiments and runs are deleted regularly.
+
 ## Quickstart
 
 **Note**: This tutorial has been developed for mantik Version `0.1.2`.
@@ -42,7 +53,7 @@ platform in the form `https://<host>.<domain>`, e.g.
 It's important that the URI has to be the root path!
 
 For more information on the required environment variables see
-[the user guide](instructions/user_guide.md#required-passwords-and-environment-variables).
+[the user guide](instructions/user_guide.md#required-credentials-and-environment-variables).
 
 To allow tracking to mantik, you require an access token to be sent with every request
 to the API. This is handled by mlflow by setting the `MLFLOW_TRACKING_TOKEN` environment
@@ -84,9 +95,9 @@ import mantik
 mantik.init_tracking()
 ```
 
-As mantik comes with the full power of [mlflow](https://www.mlflow.org/), you 
+As mantik comes with the full power of [mlflow](https://www.mlflow.org/), you
 can use standard mlflow commands in your script.
-For starters we recommend you to use the `autolog` method:
+For a quick start we recommend you to use the `autolog` method:
 
 ```python
 import mlflow
@@ -94,7 +105,7 @@ import mlflow
 mlflow.autolog()
 ```
 
-A good resource to get started with the tracking is the 
+A good resource to get started with the tracking is the
 [mlflow quickstart](https://www.mlflow.org/docs/latest/quickstart.html).
 
 ## Usage: Scheduling jobs with UNICORE
@@ -104,12 +115,16 @@ We use [UNICORE](https://www.unicore.eu/) to schedule jobs on HPC systems.
 You will need credentials for UNICORE (when running on JUWELS these are
 JuDoor username and password) and access to a compute project.
 
+The mantik project structure extends the
+[mlflow project structure](https://www.mlflow.org/docs/latest/projects.html).
+However, some additional settings and files are required, see
+[the user guide](instructions/user_guide.md#mlproject-setup) and the tutorials
+on [mlprojects](instructions/mlproject/README.md) and [containers](instructions/containers/README.md).
 For an example project that can be run on JUWELS with mantik, check out the
 demo directory.
 For more information on how to setup such a project, see
-[the user guide](instructions/user_guide.md) and the tutorials.
 
-Set the [required environment variables](instructions/user_guide.md#required-passwords-and-environment-variables):
+Set the [required environment variables](instructions/user_guide.md#required-credentials-and-environment-variables):
 
 ```bash
 export MANTIK_UNICORE_USERNAME=<unicore user>
@@ -159,3 +174,9 @@ For more detailed information, see the [the user guide](instructions/user_guide.
 
 Experiments can be viewed in the mlflow UI. Currently, the UI is the landing
 page of the mantik platform.
+
+## Using stored models for inference
+
+Mlflow provides the possibility to retrieve models that have been stored as artifacts
+or registered and use them for inference. In order to get started see
+[the "Saving and loading models with Mlflow" introduction](instructions/inference/mlflow_models_tutorial.md).

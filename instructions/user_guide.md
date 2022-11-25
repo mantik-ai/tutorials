@@ -23,7 +23,7 @@ The client can be called either via CLI (`mantik run`) or Python (`mantik.Comput
 ### Credentials
 
 We recommend that you set all your credentials as
-[environment variables](#required-passwords-and-environment-variables):
+[environment variables](#required-credentials-and-environment-variables):
 
 - `MANTIK_USERNAME`
 - `MANTIK_PASSWORD`

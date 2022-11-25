@@ -1,0 +1,8 @@
+{
+  "UnicoreApiUrl": "https://zam2125.zam.kfa-juelich.de:9112/JUWELS/rest/core",
+  "Resources": {
+  "Queue": "devel",
+  "Nodes": 1
+  },
+  "SingularityImage": "hazard_mapping"
+}

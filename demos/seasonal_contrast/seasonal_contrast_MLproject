@@ -1,0 +1,15 @@
+name: seasonal_contrast_mlproject
+
+docker_env:
+  image: seasonal_contrast_mlproject:latest
+
+entry_points:
+  main:
+    parameters:
+	gpus: int
+	data_dir: int
+	data_mode: {type: str, default: "seco"}
+        max_epochs: int 
+        seed: {type: int, default:54}
+	batch_size: {type: int, default: 32}
+    command: "python pretrain.py --gpus {gpus} --data_dir {data_dir} --data_mode {data_mode} --max_epochs {max_epochs} --seed {seed} --batch_size {batch_size} --is_4_channels"
