@@ -124,6 +124,7 @@ Once a run was submitted, you can interact with it via CLI and Python API.
 The following commands are available:
 
 - `mantik runs list`: Shows a detailed list of all submitted runs. (`mantik.unicore.client.Client.get_jobs()`)
+- `mantik runs cancel`: Cancel a submitted run. (`mantik.unicore.job.Job.cancel()`)
 - `mantik runs status`: Shows a run's current status (`mantik.unicore.job.Job.status`)
 - `mantik runs info`: Shows detailed information about a run. (`mantik.unicore.job.Job.properties`)
 - `mantik runs logs`: Prints the application logs. (`mantik.unicore.job.Job.application_logs`)
