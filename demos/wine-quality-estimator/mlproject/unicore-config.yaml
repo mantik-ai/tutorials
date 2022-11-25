@@ -1,0 +1,7 @@
+UnicoreApiUrl: https://zam2125.zam.kfa-juelich.de:9112/JUWELS/rest/core
+SingularityImage:
+  Path: wine-quality-executor.sif
+  Type: local
+Resources:
+  Queue: devel
+  Nodes: 1
