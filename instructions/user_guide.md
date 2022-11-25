@@ -276,7 +276,7 @@ his is specific to the SLURM scheduler.
   - `Reservation` (_optional_): Batch system reservation ID
   - `NodeConstraints` (_optional_): Batch system node constraints
   - `QoS` (_optional_): Batch system QoS
-- `Exclude` (_optional_): List of file names, directories, or patterns to exclude from uploading to the Compute Backend Service. E.g.
+- `Exclude` (_optional_): List of file names, directories, or patterns to exclude from uploading to the Compute Backend Service.
 
   ```yaml
   Exclude:
