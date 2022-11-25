@@ -137,9 +137,12 @@ learning projects that mainly follows the conventions for
 [mlflow projects](https://www.mlflow.org/docs/latest/projects.html). The
 differences are described in more detail below:
 
-- We only support containerized projects.
-- An additional file for the compute backend configuration is needed.
-- An Apptainer (Singularity) image must be present either in the MLproject directory or on the remote system.
+- We support containerized projects and python environments.
+- If you want your project to run in a container:
+  - An additional file for the compute backend configuration is needed.
+  - An Apptainer (Singularity) image must be present either in the MLproject directory or on the remote system.
+- If you want your project to run in a Python environment:
+  - A Python venv must be present in the MLproject directory or the remote system. 
 
 **Important remark:** The `mantik.ComputeBackendClient.submit_run()` method by default uploads the entire mlflow project directory.
 It is possible to give a list of files, directories and/or patterns to exclude from the upload in the Backend Config `exclude` field (see below section for the Backend Config).
